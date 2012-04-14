@@ -19,13 +19,14 @@ etc
 
 ### Git Workflow
 
-*Hack - Ship - Done*
+*Branch - Hack - Ship - Done*
 
 Inspired by [Dead Simple Git Workflow](http://jonrohan.me/guide/git/dead-simple-git-workflow-for-agile-teams/)
 
-``` gcb branchname ``` 
+``` branch branchname ``` 
 
 To checkout and create a new branch. Then work normally, using ``` git commit ```
+This is just a simple alias for ``` git checkout -b branchname ```
 
 ``` hack ```
 
