@@ -50,4 +50,10 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 alias ll='ls -lrt'
 
 # Git Aliases
+alias br='git checkout -b'
 alias branch='git checkout -b'
+alias ga='git add'
+alias gp='git push'
+alias gs='git status'
+alias gc='git commit -m'
+alias gca='git commit -am'
