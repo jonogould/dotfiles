@@ -1,6 +1,6 @@
-### My Dotfiles
+## My Dotfiles
 
-#### Getting Started
+### Getting Started
 
 ```
 cd ~
@@ -17,11 +17,10 @@ ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
 etc
 ```
 
-#### Git Workflow
-
-Inspired by [Dead Simple Git Workflow](http://jonrohan.me/guide/git/dead-simple-git-workflow-for-agile-teams/)
+### Git Workflow
 
 *Hack - Ship - Done*
+Inspired by [Dead Simple Git Workflow](http://jonrohan.me/guide/git/dead-simple-git-workflow-for-agile-teams/)
 
 ``` gcb branchname ``` 
 
@@ -40,6 +39,8 @@ Ship will checkout the master merge my branch with it, and then push it to the o
 ``` dwf ```
 
 aka "Done With Feature", This will move you back to the master, and delete the old branch.
+
+### Vim
 
 #### Installing new vim plugins:
 	
