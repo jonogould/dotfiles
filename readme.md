@@ -23,7 +23,7 @@ etc
 
 Inspired by [Dead Simple Git Workflow](http://jonrohan.me/guide/git/dead-simple-git-workflow-for-agile-teams/)
 
-#### Branch
+**Branch**
 
 ``` branch branchname ``` 
 
@@ -31,21 +31,21 @@ To checkout and create a new branch. Then work normally, using ``` git commit ``
 
 This is just a simple alias for ``` git checkout -b branchname ```
 
-#### Hack
+**Hack**
 
 ``` hack ```
 
 Hack is what it's called when you pull the lastest code from the origin and merge it with your branch.
 It's a good idea to do this often, just to keep everything up to date. 
 
-### Ship
+**Ship**
 
 ``` ship ```
 
 It's a good idea to run ``` hack ``` before ``` ship ``` to make sure you're up to date.
 Ship will checkout the master merge my branch with it, and then push it to the origin.
 
-#### Done
+**Done**
 
 ``` dwf ```
 
