@@ -10,6 +10,30 @@ git submodule init
 git submodule update
 ```
 
+#### Git Workflow
+
+Inspired by [Dead Simple Git Workflow](http://jonrohan.me/guide/git/dead-simple-git-workflow-for-agile-teams/)
+
+*Hack - Ship - Done*
+
+``` gcb branchname``` To checkout and create a new branch
+
+Then work normally, using ``` git commit ```
+
+``` hack ```
+
+Hack is what it's called when you pull the lastest code from the origin and merge it with your branch.
+It's a good idea to do this often, just to keep everything up to date. 
+
+``` ship ```
+
+It's a good idea to run ``` hack ``` before ``` ship ``` to make sure you're up to date.
+Ship will checkout the master merge my branch with it, and then push it to the origin.
+
+``` dwf ```
+
+This will move you back to the master, and delete the old branch.
+
 #### Creating Symlinks
 
 ```
