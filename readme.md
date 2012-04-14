@@ -10,7 +10,7 @@ git submodule init
 git submodule update
 ```
 
-You'll then nee to link the files to your home directory
+You'll then need to link the files to your home directory
 
 ```
 ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
