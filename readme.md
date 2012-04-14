@@ -16,9 +16,9 @@ Inspired by [Dead Simple Git Workflow](http://jonrohan.me/guide/git/dead-simple-
 
 *Hack - Ship - Done*
 
-``` gcb branchname``` To checkout and create a new branch
+``` gcb branchname ``` 
 
-Then work normally, using ``` git commit ```
+To checkout and create a new branch. Then work normally, using ``` git commit ```
 
 ``` hack ```
 
@@ -32,7 +32,7 @@ Ship will checkout the master merge my branch with it, and then push it to the o
 
 ``` dwf ```
 
-This will move you back to the master, and delete the old branch.
+aka "Done With Feature", This will move you back to the master, and delete the old branch.
 
 #### Creating Symlinks
 
