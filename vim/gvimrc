@@ -1,5 +1,7 @@
 color solarized
 
+set showtabline=1
+
 set guioptions=egmrt
 set guioptions-=r
 set nu
