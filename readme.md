@@ -20,6 +20,7 @@ etc
 ### Git Workflow
 
 *Hack - Ship - Done*
+
 Inspired by [Dead Simple Git Workflow](http://jonrohan.me/guide/git/dead-simple-git-workflow-for-agile-teams/)
 
 ``` gcb branchname ``` 
