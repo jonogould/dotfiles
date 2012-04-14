@@ -6,12 +6,6 @@
 	unstage = reset HEAD
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [difftool "Kaleidoscope"]
-[difftool]
-[diff]
-[difftool "Kaleidoscope"]
-[difftool]
-[diff]
-[difftool "Kaleidoscope"]
 	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [difftool]
 	prompt = false
