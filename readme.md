@@ -1,7 +1,10 @@
 ### My Dotfiles
 
-#### One Line Install
+#### Getting Started
 
 ```
-curl https://raw.github.com/wayneashleyberry/dotfiles/master/install.sh | sh
+cd ~
+git clone git@github.com:wayneashleyberry/dotfiles.git
+ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+etc
 ```

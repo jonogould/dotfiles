@@ -1,0 +1,155 @@
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+au BufNewFile,BufRead *.less set filetype=less
+au BufNewFile,BufRead jakefile set filetype=javascript
+
+filetype plugin indent on
+
+" Leader key
+let mapleader = '\'
+
+" Allow sweet hacks
+set nocompatible
+
+set encoding=utf-8
+set scrolloff=3
+set number
+set numberwidth=4
+set mousehide
+set nowrap
+set cursorline
+set visualbell
+set showcmd
+set showmode
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set ts=4 sw=4
+set undofile
+
+" Search
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+
+" leader-space to clear search results
+nnoremap <leader><space> :noh<cr>
+
+" tab key to find matching bracket
+nnoremap <tab> %
+vnoremap <tab> %
+
+syntax on
+
+" Prettyness
+set guifont=MesloLGLDZ:h12
+colorscheme monokai-soda
+" colorscheme solarized
+"set background=dark
+"hi LineNr guibg=#002B36
+
+"Status line gnarliness
+set laststatus=2
+set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+
+" NERDTree hotkeys and config
+let NERDTreeShowHidden=0
+let NERDTreeShowLineNumbers=1
+let NERDTreeWinPos="left"
+let NERDTreeShowBookmarks=1
+map <F12> :NERDTreeToggle <CR> :set relativenumber <CR>
+map <F11> :NERDTreeFind <CR>
+
+" Ctrlp
+let g:ctrlp_max_depth = 10
+map <D-p> :CtrlP <CR>
+map <C-P> :CtrlP <CR>
+
+set guitablabel=%t
+
+if has("gui_running")
+    set guioptions=egmrt
+    set guioptions-=r
+    set nu
+endif
+
+" Wildcard ignores
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so,*.un,*.un~,.DS_store,*.swp
+
+" Autosave on focus lost
+au FocusLost * :silent! wa!
+au BufLeave * :silent! wa!
+
+" Don't manage ctrl-p directory
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = 'publish'
+
+
+" Custom stuffs
+" =============
+
+" Relative line numbers
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
+
+autocmd FocusLost * :set number
+autocmd FocusGained * :set relativenumber
+autocmd BufReadPost * :set relativenumber
+autocmd BufNewFile * :set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+" Map ,w to create a new vertical split and switch to it
+nnoremap <leader>w <C-w>v<C-w>l
+
+" Duplicate current line below and replace with equal signs
+nnoremap <leader>1 yypVr=
+
+" Quick editing of .vimrc
+nnoremap <leader>rc <C-w><C-v><C-l>:e $MYVIMRC<cr>
+
+" Toggle fullscreen
+nnoremap <leader>f :set invfullscreen <CR>
+
+" Bubble single lines
+nmap <C-k> [e
+nmap <C-j> ]e
+
+" Bubble multiple lines
+vmap <C-k> [egv
+vmap <C-j> ]egv
+
+" Indent lines, textmate style
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+
+" Use command key to navigate splits
+nnoremap <D-h> <C-w>h
+nnoremap <D-j> <C-w>j
+nnoremap <D-k> <C-w>k
+nnoremap <D-l> <C-w>l
+
+" Disable arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
