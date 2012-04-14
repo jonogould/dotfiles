@@ -1,1 +1,5 @@
 color solarized
+
+set guioptions=egmrt
+set guioptions-=r
+set nu
