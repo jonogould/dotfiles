@@ -23,7 +23,7 @@ ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
 etc
 ```
 
-### Git Workflow
+# Git Workflow
 
 *Branch - Hack - Ship - Done*
 
@@ -49,7 +49,7 @@ Ship will checkout the master merge my branch with it, and then push it to the o
 
 aka "Done With Feature", This will move you back to the master, and delete the old branch.
 
-### Vim
+# Vim
 
 #### Installing new vim plugins:
 	
