@@ -37,7 +37,7 @@ This is just a simple alias for ``` git checkout -b branchname ```
 
 **Hack** ``` hack ```
 
-Hack is what it's called when you pull the lastest code from the origin and merge it with your branch.
+Hack pulls the lastest code from the origin and merges it with your branch.
 It's a good idea to do this often, just to keep everything up to date. 
 
 **Ship** ``` ship ```
