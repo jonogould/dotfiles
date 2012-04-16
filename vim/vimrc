@@ -25,7 +25,9 @@ set shiftwidth=4
 set smarttab
 set ts=4 sw=4
 set undofile
-set showtabline=2
+
+" Always show tabs
+" set showtabline=2
 
 " Search
 set ignorecase
@@ -42,11 +44,18 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
+" Color Scheme
 syntax on
-
-" Prettyness
 set guifont=MesloLGLDZ:h12
-colorscheme monokai-soda
+set background=dark
+let g:solarized_contrast="high"
+let g:solarized_visibility="low"
+let g:solarized_bold=0
+let g:solarized_italic=1
+let g:solarized_underline=0
+color solarized
+
+call togglebg#map("<F5>")
 
 " Status line gnarliness
 set laststatus=2
@@ -67,7 +76,7 @@ let g:ctrlp_max_depth = 10
 map <D-p> :CtrlP <CR>
 map <C-P> :CtrlP <CR>
 
-" Always show tabs
+" Custom Tab Label
 set guitablabel=%t
 
 " Wildcard ignores
@@ -80,7 +89,6 @@ au BufLeave * :silent! wa!
 " Don't manage ctrl-p directory
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = 'publish'
-
 
 " Relative line numbers
 
@@ -109,6 +117,8 @@ nnoremap <leader>1 yypVr=
 
 " Quick editing of .vimrc
 nnoremap <leader>rc <C-w><C-v><C-l>:e $MYVIMRC<cr>
+" Quick editing of .gvimrc
+nnoremap <leader>gc <C-w><C-v><C-l>:e ~/.gvimrc<cr>
 
 " Toggle fullscreen
 nnoremap <leader>f :set invfullscreen <CR>

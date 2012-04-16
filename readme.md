@@ -65,3 +65,9 @@ cd ~/dotfiles
 git submodule init
 git submodule update
 ```
+
+#### Solarized
+
+By default vim is set to use the Solarized theme, check it out [here](http://ethanschoonover.com/solarized)
+
+For Terminal compatability, use the .terminal color schemes
