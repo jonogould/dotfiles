@@ -1,4 +1,11 @@
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+ 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
 let g:solarized_contrast="high"
+let g:solarized_visibility="low"
 let g:solarized_bold=0
 let g:solarized_italic=1
 let g:solarized_underline=0
