@@ -41,10 +41,9 @@ source $ZSH/oh-my-zsh.sh
 # Exports
 export NODE_PATH="/usr/local/lib/node_modules"
 
-PATH=$PATH:~/dotfiles/git/bin # Add git workflow scripts
-PATH=$PATH:/usr/local/apache2/bin
 PATH=$PATH:/usr/local/sbin
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:~/dotfiles/git/bin # Add git workflow scripts
 
 # General Aliases
 alias ll='ls -lrt'
