@@ -2,6 +2,8 @@
 
 ### One Line Install
 
+Warning... This will remove all of your current dotfiles!
+
 ```
 curl https://raw.github.com/wayneashleyberry/dotfiles/master/install.sh | sh
 ```
