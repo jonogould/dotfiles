@@ -45,8 +45,11 @@ PATH=$PATH:/usr/local/sbin
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:~/.dotfiles/git/bin # Add git workflow scripts
 
-# General Aliases
-alias ll='ls -lrt'
+# ls
+alias ls="ls -F"
+alias l="ls -lAh"
+alias ll="ls -l"
+alias la='ls -A'
 
 # Git Aliases
 alias br='git checkout -b'
