@@ -38,7 +38,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-source knnktr 					# include knnktr scripts
 
 # Exports
 export NODE_PATH="/usr/local/lib/node_modules"
@@ -47,7 +46,9 @@ PATH=$PATH:/usr/local/sbin
 PATH=$PATH:$HOME/.rvm/bin 		# Add RVM to PATH for scripting
 PATH=$PATH:~/.dotfiles/git/bin 	# Add git workflow scripts
 
-PATH=$PATH:~/Desktop/k/
+PATH=$PATH:~/Desktop/k/			# FIXME
+
+source knnktr 					# include knnktr scripts
 
 # ls
 alias ls="ls -F"
