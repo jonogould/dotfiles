@@ -13,7 +13,7 @@ curl https://raw.github.com/wayneashleyberry/dotfiles/master/install.sh | sh
 ```
 cd ~
 git clone git@github.com:wayneashleyberry/dotfiles.git
-cd dotfiles
+cd .dotfiles
 git submodule init
 git submodule update
 ```
@@ -21,7 +21,7 @@ git submodule update
 You'll then need to link the files to your home directory
 
 ```
-ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 etc
 ```
 
