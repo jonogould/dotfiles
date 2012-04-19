@@ -10,6 +10,7 @@
 *~
 *.sass-cache
 
+
 # OS or Editor folders
 .DS_Store
 Thumbs.db
@@ -25,6 +26,20 @@ nbproject
 _notes
 dwsync.xml
 
+# Vim added files
+.*.sw[a-z]
+*.un~
+Session.vim
+
+# SublimeText project files
+/*.sublime-project
+*.sublime-workspace
+
+# Textmate project files
+*.tmproj
+*.tmproject
+tmtags
+
 # Komodo
 *.komodoproject
 .komodotools
@@ -39,4 +54,5 @@ dwsync.xml
 .CVS
 intermediate
 publish
+deploy-*
 .idea
