@@ -46,7 +46,7 @@ PATH=$PATH:/usr/local/sbin
 PATH=$PATH:$HOME/.rvm/bin 		# Add RVM to PATH for scripting
 PATH=$PATH:~/.dotfiles/git/bin 	# Add git workflow scripts
 
-PATH=$PATH:~/Desktop/k/			# FIXME
+PATH=$PATH:~/.knnktr/			# knnktr scripts
 
 source knnktr 					# include knnktr scripts
 
