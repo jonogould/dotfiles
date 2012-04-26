@@ -1,0 +1,60 @@
+#!/bin/bash
+
+knnktr-gotoproject () {
+	PROJECTDIR=`cat $HOME/.dotfiles/knnktr/.env`
+	cd `cat $HOME/.dotfiles/knnktr/.env`
+}
+
+kp() {
+	clear
+	knnktr-projects.js 			# call node script
+	if [ $? -eq 0 ]; then
+		knnktr-gotoproject
+		clear
+		knnktr-current-project.js 	# echo the project details
+		knnktr-env					# set environment aliases
+	fi
+}
+
+knnktr-go-home () {
+	#clear
+	cd $PROJECTDIR
+	#knnktr-current-project.js
+}
+
+knnktr () {
+	clear
+	knnktr-help.js
+}
+
+knnktr-env () {
+	IMGDIR=`cat $PROJECTDIR/package.json | json paths.images`
+	JSDIR=`cat $PROJECTDIR/package.json | json paths.js`
+	CSSDIR=`cat $PROJECTDIR/package.json | json paths.css`
+	IMGDIR="$PROJECTDIR/$IMGDIR"
+	JSDIR="$PROJECTDIR/$JSDIR"
+	CSSDIR="$PROJECTDIR/$CSSDIR"
+	alias home="knnktr-go-home"					# Alias for going home
+	alias gg="knnktr-go-home"					# Alias for going home
+	alias kk="knnktr-go-home"					# Alias for going home
+	alias kd="cd $PROJECTDIR && ./deploy-prod"	# Alias for deploying
+	alias img="cd $IMGDIR"						# Alias for images directory
+	alias js="cd $JSDIR"						# Alias for javascript directory
+	alias css="cd $CSSDIR"						# Alias for css directory
+	alias build=knnktr-build
+	alias deploy=knnktr-deploy
+}
+
+knnktr-build () {
+	FOO=`pwd`
+	cd $PROJECTDIR
+	make
+	cd $FOO
+}
+
+knnktr-deploy () {
+	FOO=`pwd`
+	cd $PROJECTDIR
+	./deploy
+	cd $FOO
+}

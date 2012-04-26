@@ -1,0 +1,19 @@
+{
+  "author": "Wayne Ashley Berry <wayne@knnktr.com>",
+  "name": "dotfiles",
+  "description": "vim, git and zsh dotfiles",
+  "version": "0.0.1",
+  "dependencies": {
+	  "jsontool": "*",
+	  "underscore": "*",
+	  "ansi-color": "*",
+	  "commander": "*",
+	  "prompt": "*",
+	  "shelljs": "*"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
