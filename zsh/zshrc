@@ -43,13 +43,12 @@ source $ZSH/oh-my-zsh.sh
 export NODE_PATH="/usr/local/lib/node_modules"
 
 PATH=$PATH:/usr/local/sbin
-PATH=$PATH:$HOME/.rvm/bin 		# Add RVM to PATH for scripting
-PATH=$PATH:~/.dotfiles/git/bin 	# Add git workflow scripts
+PATH=$PATH:$HOME/.rvm/bin 			# Add RVM to PATH for scripting
+PATH=$PATH:~/.dotfiles/git/bin 		# Add git workflow scripts
 PATH=$PATH:~/.dotfiles/sublime/bin 	# Add sublime workflow scripts
 
-PATH=$PATH:~/.knnktr/			# knnktr scripts
-
-source knnktr 					# include knnktr scripts
+PATH=$PATH:~/.dotfiles/knnktr/		# Add knnktr scripts
+source knnktr 						# source knnktr scripts
 
 # ls
 alias ls="ls -FG"
