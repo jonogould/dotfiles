@@ -28,21 +28,27 @@ knnktr () {
 }
 
 knnktr-env () {
+	# basic aliases
+	alias home=knnktr-go-home				# Alias for going home
+	alias gg=knnktr-go-home					# Alias for going home
+	alias kk=knnktr-go-home					# Alias for going home
+	alias build=knnktr-build				# Alias for build script
+	alias deploy=knnktr-deploy				# Alias for deploy script
+
+	# get paths from package.json
 	IMGDIR=`cat $PROJECTDIR/package.json | json paths.images`
 	JSDIR=`cat $PROJECTDIR/package.json | json paths.js`
 	CSSDIR=`cat $PROJECTDIR/package.json | json paths.css`
+
+	# append the project dir
 	IMGDIR="$PROJECTDIR/$IMGDIR"
 	JSDIR="$PROJECTDIR/$JSDIR"
 	CSSDIR="$PROJECTDIR/$CSSDIR"
-	alias home="knnktr-go-home"					# Alias for going home
-	alias gg="knnktr-go-home"					# Alias for going home
-	alias kk="knnktr-go-home"					# Alias for going home
-	alias kd="cd $PROJECTDIR && ./deploy-prod"	# Alias for deploying
-	alias img="cd $IMGDIR"						# Alias for images directory
-	alias js="cd $JSDIR"						# Alias for javascript directory
-	alias css="cd $CSSDIR"						# Alias for css directory
-	alias build=knnktr-build
-	alias deploy=knnktr-deploy
+
+	# set aliases
+	alias img="cd $IMGDIR"					# Alias for images directory
+	alias js="cd $JSDIR"					# Alias for javascript directory
+	alias css="cd $CSSDIR"					# Alias for css directory
 }
 
 knnktr-build () {
