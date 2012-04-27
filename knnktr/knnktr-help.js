@@ -16,6 +16,8 @@ log('  _/_/      _/    _/  _/    _/  _/_/      _/      _/_/        ');
 log(' _/  _/    _/    _/  _/    _/  _/  _/    _/      _/           ');
 log('_/    _/  _/    _/  _/    _/  _/    _/    _/_/  _/            ');
 
+log('                                                     v0.1.1');
+
 log(color('knnktr commands', 'red'));
 log('  ' + color('kp', 'blue') + '      list knnktr projects');
 
