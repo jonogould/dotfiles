@@ -45,12 +45,13 @@ shell.ls().forEach(function (dir) {
 logProjects();
 
 function captureInfo(packageInfo, path) {
-	if ( ! packageInfo.client || ! packageInfo.label) return;
+	if ( ! packageInfo.client ) return;
+	var label = packageInfo.label || packageInfo.name;
 	var search = _.filter(clients, function(client){ return client.name === packageInfo.client; });
 	if (search.length !== 1) {
-		clients.push({name: packageInfo.client, projects: [{name: packageInfo.label, path: path}]});
+		clients.push({name: packageInfo.client, projects: [{name: label, path: path}]});
 	} else {
-		search[0].projects.push({name: packageInfo.name, path: path});
+		search[0].projects.push({name: label, path: path});
 	}
 }
 
