@@ -18,15 +18,8 @@ log('_/    _/  _/    _/  _/    _/  _/    _/    _/_/  _/            ');
 
 log(color('knnktr commands', 'red'));
 log('  ' + color('kp', 'blue') + '      knnktr projects');
-//log('  ' + color('kn', 'blue') + '      TODO: create a new project');
-
-log(color('project tools', 'red'));
-log('  ' + color('build', 'blue') + '   runs make in project root directory');
-log('  ' + color('deploy', 'blue') + '  runs deploy script in root directory');
 
 log(color('project aliases', 'red'));
-log('  ' + color('kk', 'blue') + '      return to current project root directory');
-log('  ' + color('gg', 'blue') + '      same as kk');
-log('  ' + color('css', 'blue') + '     css directory');
-log('  ' + color('img', 'blue') + '     images directory');
-log('  ' + color('js', 'blue') + '      javascript directory');
+log('  ' + color('gg', 'blue') + '      return to current project root directory');
+log('  ' + color('build', 'blue') + '   runs make in project root directory');
+log('  ' + color('deploy', 'blue') + '  runs deploy script in root directory');
