@@ -17,7 +17,7 @@ log(' _/  _/    _/    _/  _/    _/  _/  _/    _/      _/           ');
 log('_/    _/  _/    _/  _/    _/  _/    _/    _/_/  _/            ');
 
 log(color('knnktr commands', 'red'));
-log('  ' + color('kp', 'blue') + '      knnktr projects');
+log('  ' + color('kp', 'blue') + '      list knnktr projects');
 
 log(color('project aliases', 'red'));
 log('  ' + color('gg', 'blue') + '      return to current project root directory');
