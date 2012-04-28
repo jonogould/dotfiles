@@ -66,3 +66,7 @@ alias gd='git diff'
 alias gdt='git difftool'
 alias gc='git commit -m'
 alias gca='git commit -am'
+
+# Vim-inspired
+alias :e='mvim'
+alias :q='exit'
