@@ -70,3 +70,10 @@ alias gca='git commit -am'
 # Vim-inspired
 alias :e='mvim'
 alias :q='exit'
+
+# Template Previewer
+alias t='node ~/knnktr/template-previewer/app'
+
+
+
+# end of file
