@@ -90,7 +90,7 @@ au BufLeave * :silent! wa!
 
 " Don't manage ctrl-p directory
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = 'node_modules\|publish'
+let g:ctrlp_custom_ignore = 'node_modules\|publish\|build_production\|build_test'
 
 " Relative line numbers
 
