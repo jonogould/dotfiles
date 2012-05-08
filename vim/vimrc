@@ -28,6 +28,11 @@ set ts=2 sw=2
 " Persistent Undo
 set undofile
 
+" Temp Folders
+set undodir=~/.tmp/
+set backupdir=~/.tmp/
+set directory=~/.tmp/
+
 " Always show tabs
 " set showtabline=2
 
