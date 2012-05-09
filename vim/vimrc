@@ -24,8 +24,14 @@ set tabstop=4
 set shiftwidth=4
 set smarttab
 set ts=2 sw=2
-" set expandtab
+
+" Persistent Undo
 set undofile
+
+" Temp Folders
+set undodir=~/.tmp/
+set backupdir=~/.tmp/
+set directory=~/.tmp/
 
 " Always show tabs
 " set showtabline=2
@@ -89,7 +95,7 @@ au BufLeave * :silent! wa!
 
 " Don't manage ctrl-p directory
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = 'node_modules\|publish'
+let g:ctrlp_custom_ignore = 'node_modules\|publish\|build_production\|build_test'
 
 " Relative line numbers
 
