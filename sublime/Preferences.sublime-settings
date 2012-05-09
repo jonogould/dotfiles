@@ -30,13 +30,13 @@
 	"font_face": "MesloLGLDZ",
 	"font_size": 12,
 	"highlight_line": true,
-	"ignored_packages":
+	"indent_guide_options":
 	[
+		"draw_active"
 	],
 	"open_files_in_new_window": false,
 	"save_on_focus_lost": true,
-	"tab_size": 4,
-	"theme": "Custom.sublime-theme",
+	"tab_size": 2,
 	"tree_animation_enabled": false,
 	"use_simple_full_screen": true,
 	"vintage_start_in_command_mode": true

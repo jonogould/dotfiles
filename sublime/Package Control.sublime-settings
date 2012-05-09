@@ -1,7 +1,8 @@
 {
-	"auto_upgrade_last_run": 1335974466,
+	"auto_upgrade_last_run": 1336296016,
 	"installed_packages":
 	[
+		"ColorPicker",
 		"Git",
 		"Package Control"
 	]
