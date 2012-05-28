@@ -7,12 +7,13 @@ knnktr-gotoproject () {
 
 kp() {
 	clear
-	knnktr-projects.js 			# call node script
+	knnktr-projects.js            # call node script
 	if [ $? -eq 0 ]; then
 		knnktr-gotoproject
 		clear
-		knnktr-current-project.js 	# echo the project details
-		knnktr-env					# set environment aliases
+		knnktr-current-project.js   # echo the project details
+		knnktr-env                  # set environment aliases
+		git pull                    # make sure project is up to date
 	fi
 }
 
@@ -29,11 +30,8 @@ knnktr () {
 
 knnktr-env () {
 	# basic aliases
-	alias home=knnktr-go-home				# Alias for going home
-	alias gg=knnktr-go-home					# Alias for going home
-	alias kk=knnktr-go-home					# Alias for going home
-	alias build=knnktr-build				# Alias for build script
-	alias deploy=knnktr-deploy				# Alias for deploy script
+	alias home=knnktr-go-home				# Alias for project root
+	alias gg=knnktr-go-home					# Alias for project root
 
 	# get paths from package.json
 	#IMGDIR=`cat $PROJECTDIR/package.json | json paths.images`
