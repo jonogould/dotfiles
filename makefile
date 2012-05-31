@@ -30,8 +30,4 @@ all:
 	ln -s ~/.dotfiles/nerdtree/NERDTreeBookmarks ~/.NERDTreeBookmarks
 	@echo ''
 
-	# Sublime Config
-	rm -f ~/Library/Application\ Support/Sublimt\ Text\ 2/
-	ln -s ~/.dotfiles/sublime ~/Library/Application\ Support/Sublime\ Text\ 2/
-
 	@echo 'done'
