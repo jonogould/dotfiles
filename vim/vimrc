@@ -23,7 +23,7 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set smarttab
-set ts=2 sw=2
+set ts=4 sw=4
 
 " Persistent Undo
 set undofile
