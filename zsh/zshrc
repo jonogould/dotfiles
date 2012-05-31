@@ -68,7 +68,7 @@ alias gc='git commit -m'
 alias gca='git commit -am'
 
 # Vim-inspired
-alias :e='vi'
+alias :e='mvim'
 alias :q='exit'
 
 # Template Previewer
