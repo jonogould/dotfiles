@@ -42,7 +42,9 @@ source $ZSH/oh-my-zsh.sh
 # Exports
 export NODE_PATH="/usr/local/lib/node_modules"
 
-PATH=$PATH:/usr/local/sbin
+# Use Homebrew libs before system libs
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
 PATH=$PATH:$HOME/.rvm/bin 			# Add RVM to PATH for scripting
 PATH=$PATH:~/.dotfiles/git/bin 		# Add git workflow scripts
 PATH=$PATH:~/.dotfiles/sublime/bin 	# Add sublime workflow scripts
