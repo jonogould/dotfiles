@@ -47,7 +47,7 @@ PATH=$PATH:$HOME/.rvm/bin 			# Add RVM to PATH for scripting
 PATH=$PATH:~/.dotfiles/git/bin 		# Add git workflow scripts
 PATH=$PATH:~/.dotfiles/sublime/bin 	# Add sublime workflow scripts
 
-PATH=$PATH:~/.dotfiles/knnktr/		# Add knnktr scripts
+PATH=$PATH:~/.dotfiles/knnktr		# Add knnktr scripts
 source knnktr 						# source knnktr scripts
 
 # ls
