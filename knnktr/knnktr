@@ -13,7 +13,6 @@ kp() {
 		clear
 		knnktr-current-project.js   # echo the project details
 		knnktr-env                  # set environment aliases
-		git pull                    # make sure project is up to date
 	fi
 }
 
