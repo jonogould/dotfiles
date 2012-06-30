@@ -5,6 +5,10 @@ knnktr-gotoproject () {
 	cd `cat $HOME/.dotfiles/knnktr/.env`
 }
 
+gg () {
+	echo 'project has not been set'
+}
+
 kp() {
 	clear
 	knnktr-projects.js            # call node script
