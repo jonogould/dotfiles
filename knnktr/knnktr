@@ -17,9 +17,8 @@ kp() {
 }
 
 knnktr-go-home () {
-	#clear
 	cd $PROJECTDIR
-	#knnktr-current-project.js
+	knnktr-current-project.js
 }
 
 knnktr () {
