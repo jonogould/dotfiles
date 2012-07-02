@@ -5,6 +5,10 @@ knnktr-gotoproject () {
 	cd `cat $HOME/.dotfiles/knnktr/.env`
 }
 
+gg () {
+	echo 'project has not been set'
+}
+
 kp() {
 	clear
 	knnktr-projects.js            # call node script
@@ -13,14 +17,12 @@ kp() {
 		clear
 		knnktr-current-project.js   # echo the project details
 		knnktr-env                  # set environment aliases
-		git pull                    # make sure project is up to date
 	fi
 }
 
 knnktr-go-home () {
-	#clear
 	cd $PROJECTDIR
-	#knnktr-current-project.js
+	knnktr-current-project.js
 }
 
 knnktr () {
