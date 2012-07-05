@@ -1,6 +1,6 @@
 #!/bin/sh -x
 # dwf: aka "Done With Feature" script: deletes current branch and puts you back on master
 # see: http://jonrohan.me/guide/git/dead-simple-git-workflow-for-agile-teams/
-CURRENT=`git branch | grep '\*' | awk '{print $2}'`
+CURRENT=`git branch | awk '/\*/{print $2}'`
 git checkout master
 git branch -d ${CURRENT}
