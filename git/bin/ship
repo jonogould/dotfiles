@@ -1,13 +1,6 @@
 #!/bin/sh -x
-# Git workflow ship script from: http://reinh.com/blog/2008/08/27/hack-and-and-ship.html
 # git name-rev is fail
-
-# Run 'hack ' first to make sure you're up to date.
-# This will checkout the master merge my branch with it,
-# and then push it to the origin. Once again I use a shell script for this.
-
-ref=$(git symbolic-ref HEAD 2&gt; /dev/null) || exit 0
-CURRENT="${ref#refs/heads/}"
+CURRENT=`git branch | grep '\*' | awk '{print $2}'`
 git checkout master
 git merge ${CURRENT}
 git push origin master

@@ -1,8 +1,6 @@
 #!/bin/sh -x
-# hack: Merge the latest changes from the master branch into your current branch
-# http://jonrohan.me/guide/git/dead-simple-git-workflow-for-agile-teams/
-ref=$(git symbolic-ref HEAD 2&gt; /dev/null) || exit 0
-CURRENT="${ref#refs/heads/}"
+# git name-rev is fail
+CURRENT=`git branch | grep '\*' | awk '{print $2}'`
 git checkout master
 git pull origin master
 git checkout ${CURRENT}
