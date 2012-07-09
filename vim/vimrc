@@ -3,9 +3,13 @@ call pathogen#helptags()
 
 filetype plugin indent on
 
+" Leader key
+let mapleader = '\'
+
 " Git stuff "
 set laststatus=2
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+nnoremap <leader>gs :Gstatus<cr>
 
 " Make the current window big, but leave others context
 set winminwidth=6
@@ -15,9 +19,6 @@ set winwidth=84
 set winheight=5
 set winminheight=5
 set winheight=999
-
-" Leader key
-let mapleader = '\'
 
 " Allow sweet hacks
 set nocompatible
