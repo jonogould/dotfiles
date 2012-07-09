@@ -62,15 +62,6 @@ call togglebg#map("<F5>")
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
-" NERDTree config
-let NERDTreeShowHidden=0
-let NERDTreeShowLineNumbers=1
-let NERDTreeWinPos="left"
-
-" NERDTree hotkeys
-map <F12> :NERDTreeToggle <CR> :set relativenumber <CR>
-map <F11> :NERDTreeFind <CR>
-
 " Ctrlp
 let g:ctrlp_max_depth = 10
 map <D-p> :CtrlP <CR>
