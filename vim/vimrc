@@ -53,14 +53,8 @@ vnoremap <tab> %
 
 " Color Scheme
 syntax on
-set guifont=MesloLGLDZ:h12
-set background=dark
-let g:solarized_contrast="high"
-let g:solarized_visibility="low"
-let g:solarized_bold=0
-let g:solarized_italic=1
-let g:solarized_underline=0
-color solarized
+set guifont=MesloLGLDZ:h13
+color ir_black
 
 call togglebg#map("<F5>")
 
@@ -72,7 +66,6 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 let NERDTreeShowHidden=0
 let NERDTreeShowLineNumbers=1
 let NERDTreeWinPos="left"
-let NERDTreeShowBookmarks=1
 
 " NERDTree hotkeys
 map <F12> :NERDTreeToggle <CR> :set relativenumber <CR>
