@@ -65,6 +65,14 @@ let g:ctrlp_max_depth = 5
 map <D-p> :CtrlP <CR>
 map <C-P> :CtrlP <CR>
 
+" Ignore these directories
+let g:ctrlp_custom_ignore = 'node_modules'
+
+" Look for nearest src folder
+let g:ctrlp_root_markers = ['application']
+let g:ctrlp_working_path_mode = 2
+
+
 " Custom Tab Label
 set guitablabel=%t
 
@@ -75,9 +83,6 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so,*.un,*.un~,.DS_store,*.swp
 au FocusLost * :silent! wa!
 au BufLeave * :silent! wa!
 
-" Don't manage ctrl-p directory
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = 'node_modules'
 
 " Relative line numbers
 
@@ -116,16 +121,16 @@ vmap <C-k> [egv
 vmap <C-j> ]egv
 
 " Indent lines, textmate style
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
+" nmap <D-[> <<
+" nmap <D-]> >>
+" vmap <D-[> <gv
+" vmap <D-]> >gv
 
 " Use command key to navigate splits
-nnoremap <D-h> <C-w>h
-nnoremap <D-j> <C-w>j
-nnoremap <D-k> <C-w>k
-nnoremap <D-l> <C-w>l
+" nnoremap <D-h> <C-w>h
+" nnoremap <D-j> <C-w>j
+" nnoremap <D-k> <C-w>k
+" nnoremap <D-l> <C-w>l
 
 " Disable arrow keys
 nnoremap <up> <nop>
