@@ -35,10 +35,10 @@ set visualbell
 set showcmd
 set showmode
 set autoindent
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set smarttab
-set ts=2 sw=2
+set ts=4 sw=4
 
 " Persistent Undo
 set undofile
@@ -68,7 +68,7 @@ vnoremap <tab> %
 
 " Color Scheme
 syntax on
-set guifont=MesloLGLDZ:h13
+set guifont=MesloLGLDZ:h12
 color ir_black
 
 " Status line gnarliness
@@ -136,16 +136,16 @@ vmap <C-k> [egv
 vmap <C-j> ]egv
 
 " Indent lines, textmate style
-" nmap <D-[> <<
-" nmap <D-]> >>
-" vmap <D-[> <gv
-" vmap <D-]> >gv
+nmap <C-[> <<
+nmap <C-]> >>
+vmap <C-[> <gv
+vmap <C-]> >gv
 
 " Use command key to navigate splits
-" nnoremap <D-h> <C-w>h
-" nnoremap <D-j> <C-w>j
-" nnoremap <D-k> <C-w>k
-" nnoremap <D-l> <C-w>l
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
 
 " Disable arrow keys
 nnoremap <up> <nop>
