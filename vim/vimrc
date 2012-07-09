@@ -10,10 +10,8 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " Make the current window big, but leave others context
 set winminwidth=6
 set winwidth=84
-" " We have to have a winheight bigger than we want to set winminheight. But
-" if
-" " we set winheight to be huge before winminheight, the winminheight set will
-" " fail.
+" We have to have a winheight bigger than we want to set winminheight. But
+" if we set winheight to be huge before winminheight, the winminheight set will fail.
 set winheight=5
 set winminheight=5
 set winheight=999
@@ -77,7 +75,6 @@ color ir_black
 
 " Ctrlp
 let g:ctrlp_max_depth = 5
-map <D-p> :CtrlP <CR>
 map <C-P> :CtrlP <CR>
 
 " Ignore these directories
@@ -86,7 +83,6 @@ let g:ctrlp_custom_ignore = 'node_modules'
 " Look for nearest src folder
 let g:ctrlp_root_markers = ['index.php']
 let g:ctrlp_working_path_mode = 2
-
 
 " Custom Tab Label
 set guitablabel=%t
@@ -98,9 +94,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so,*.un,*.un~,.DS_store,*.swp
 au FocusLost * :silent! wa!
 au BufLeave * :silent! wa!
 
-
 " Relative line numbers
-
 function! NumberToggle()
   if(&relativenumber == 1)
     set number
@@ -108,17 +102,15 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
-
 nnoremap <C-n> :call NumberToggle()<cr>
 
-autocmd FocusLost * :set number
-autocmd FocusGained * :set relativenumber
+" Toggle relative line numbers
 autocmd BufReadPost * :set relativenumber
 autocmd BufNewFile * :set relativenumber
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
-" Map <leader>w to create a new vertical split and switch to it
+" Create a new vertical split and switch to it
 nnoremap <leader>w <C-w>v<C-w>l
 
 " Duplicate current line below and replace with equal signs
@@ -135,29 +127,7 @@ nmap <C-j> ]e
 vmap <C-k> [egv
 vmap <C-j> ]egv
 
-" Indent lines, textmate style
-nmap <C-[> <<
-nmap <C-]> >>
-vmap <C-[> <gv
-vmap <C-]> >gv
-
-" Use command key to navigate splits
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-
-" Disable arrow keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-" Rename File
+" Rename Current File
 function! RenameFile()
 	let old_name = expand('%')
 	let new_name = input('New file name: ', expand('%'))
@@ -168,3 +138,4 @@ function! RenameFile()
 	endif
 endfunction
 map <leader>n :call RenameFile()<cr>
+
