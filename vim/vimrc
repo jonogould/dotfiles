@@ -22,8 +22,8 @@ set winminwidth=10
 set winwidth=84
 " We have to have a winheight bigger than we want to set winminheight. But
 " if we set winheight to be huge before winminheight, the winminheight set will fail.
-set winheight=5
-set winminheight=5
+set winheight=20
+set winminheight=20
 set winheight=999
 
 " Create a new vertical split and switch to it
@@ -84,7 +84,11 @@ color ir_black
 
 " Ctrlp
 let g:ctrlp_max_depth = 5
-map <C-P> :CtrlP <CR>
+let g:ctrlp_max_height = 20
+let g:ctrlp_max_files = 20
+map <C-p> :CtrlP <CR>
+map <D-p> :CtrlP <CR>
+map <leader>p :CtrlP <CR>
 
 " Ignore these directories
 let g:ctrlp_custom_ignore = 'node_modules'
@@ -122,6 +126,12 @@ autocmd InsertLeave * :set relativenumber
 " Duplicate current line below and replace with equal signs
 nnoremap <leader>1 yypVr=
 
+" Textmate style indenting
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+
 " Bubble single lines
 nmap <C-k> [e
 nmap <C-j> ]e
@@ -131,10 +141,10 @@ vmap <C-k> [egv
 vmap <C-j> ]egv
 
 " Use cmd key to navigate windows
-nmap <silent> <D-k> :wincmd k<CR>                                                                                                                       
-nmap <silent> <D-j> :wincmd j<CR>                                                                                                                       
-nmap <silent> <D-h> :wincmd h<CR>                                                                                                                       
-nmap <silent> <D-l> :wincmd l<CR>
+" nmap <silent> <D-k> :wincmd k<CR>                                                                                                                       
+" nmap <silent> <D-j> :wincmd j<CR>                                                                                                                       
+" nmap <silent> <D-h> :wincmd h<CR>                                                                                                                       
+" nmap <silent> <D-l> :wincmd l<CR>
 
 " Rename Current File
 function! RenameFile()
