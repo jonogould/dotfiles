@@ -1,23 +1,20 @@
 #!/usr/bin/env node
 
+// knnktr projects
 var program = require('commander');
+var prompt = require('prompt');
+var color = require("ansi-color").set;
+var shell = require('shelljs');
+var _ = require('underscore');
+var fs = require('fs');
+var directories = [];
+var clients = [];
+var success = false;
+var ls;
 
 program
   .version('0.0.1')
   .parse(process.argv);
-
-// knnktr projects
-
-var prompt = require('prompt')
-	, color = require("ansi-color").set
-	, shell = require('shelljs')
-	, _ = require('underscore')
-	, fs = require('fs')
-	, directories = []
-	, clients = []
-	, success = false
-	, ls
-	;
 
 process.on('exit', function () {
 	if (success === false) {
@@ -27,8 +24,8 @@ process.on('exit', function () {
 });
 
 // config
-var HOME = shell.exec('echo $HOME', {silent:true}).output.replace(/\n/, '')
-	, projectsDir = HOME + '/knnktr';
+var HOME = shell.exec('echo $HOME', {silent:true}).output.replace(/\n/, '');
+var projectsDir = HOME + '/knnktr';
 
 shell.cd(projectsDir);
 
@@ -41,8 +38,6 @@ shell.ls().forEach(function (dir) {
 	} catch (e) {
 	}
 });
-
-logProjects();
 
 function captureInfo(packageInfo, path) {
 	if ( ! packageInfo.client ) return;
@@ -93,3 +88,5 @@ function ask() {
 		process.exit(0);
 	})
 }
+
+logProjects();
