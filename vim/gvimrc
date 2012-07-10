@@ -9,3 +9,6 @@ set guioptions-=r
 set nu
 
 color grb256
+
+" Don't show tabs
+set showtabline=0
