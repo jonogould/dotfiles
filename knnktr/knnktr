@@ -22,7 +22,6 @@ kp() {
 
 knnktr-go-home () {
 	cd $PROJECTDIR
-	knnktr-current-project.js
 }
 
 knnktr-env () {
