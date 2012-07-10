@@ -6,6 +6,9 @@ filetype plugin indent on
 " Leader key
 let mapleader = '\'
 
+" NERDTree
+map <leader>e :NERDTreeToggle<CR>
+
 " Quick editing of .vimrc
 nnoremap <leader>rc <C-w><C-v><C-l>:e $MYVIMRC<cr>
 
