@@ -17,15 +17,6 @@ set laststatus=2
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 nnoremap <leader>gs :Gstatus<cr>
 
-" Make the current window big, but leave others context
-set winminwidth=10
-set winwidth=84
-" We have to have a winheight bigger than we want to set winminheight. But
-" if we set winheight to be huge before winminheight, the winminheight set will fail.
-set winheight=20
-set winminheight=20
-set winheight=999
-
 " Create a new vertical split and switch to it
 nnoremap <leader>w <C-w>v<C-w>l
 
@@ -82,9 +73,7 @@ syntax on
 color molokai
 
 " Ctrlp
-let g:ctrlp_max_depth = 5
 let g:ctrlp_max_height = 20
-let g:ctrlp_max_files = 20
 map <C-p> :CtrlP <CR>
 map <D-p> :CtrlP <CR>
 map <leader>p :CtrlP <CR>
