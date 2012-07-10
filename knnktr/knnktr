@@ -25,42 +25,7 @@ knnktr-go-home () {
 	knnktr-current-project.js
 }
 
-knnktr () {
-	clear
-	knnktr-help.js
-}
-
 knnktr-env () {
-	# basic aliases
-	alias home=knnktr-go-home				# Alias for project root
-	alias gg=knnktr-go-home					# Alias for project root
-
-	# get paths from package.json
-	#IMGDIR=`cat $PROJECTDIR/package.json | json paths.images`
-	#JSDIR=`cat $PROJECTDIR/package.json | json paths.js`
-	#CSSDIR=`cat $PROJECTDIR/package.json | json paths.css`
-
-	# append the project dir
-	#IMGDIR="$PROJECTDIR/$IMGDIR"
-	#JSDIR="$PROJECTDIR/$JSDIR"
-	#CSSDIR="$PROJECTDIR/$CSSDIR"
-
-	# set aliases
-	#alias img="cd $IMGDIR"					# Alias for images directory
-	#alias js="cd $JSDIR"					# Alias for javascript directory
-	#alias css="cd $CSSDIR"					# Alias for css directory
-}
-
-knnktr-build () {
-	FOO=`pwd`
-	cd $PROJECTDIR
-	make
-	cd $FOO
-}
-
-knnktr-deploy () {
-	FOO=`pwd`
-	cd $PROJECTDIR
-	./deploy
-	cd $FOO
+	alias home=knnktr-go-home # Alias for project root
+	alias gg=knnktr-go-home	  # Alias for project root
 }
