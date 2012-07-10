@@ -25,9 +25,4 @@ all:
 	ln -s ~/.dotfiles/ack/ackconfig ~/.ackconfig
 	@echo ''
 
-	# NERDTree Bookmarks
-	rm -f ~/.NERDTreeBookmarks
-	ln -s ~/.dotfiles/nerdtree/NERDTreeBookmarks ~/.NERDTreeBookmarks
-	@echo ''
-
 	@echo 'done'
