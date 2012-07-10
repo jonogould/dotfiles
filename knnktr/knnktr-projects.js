@@ -32,16 +32,17 @@ shell.cd(projectsDir);
 shell.ls().forEach(function (dir) {
 	var projectDir = projectsDir + '/' + dir;
 	try {
-		var packageInfo = fs.readFileSync(projectDir + '/package.json', 'utf8')
-			, path = projectDir;
+		var packageInfo = fs.readFileSync(projectDir + '/package.json', 'utf8');
+		var path = projectDir;
 		captureInfo(JSON.parse(packageInfo), path);
 	} catch (e) {
+		// ...
 	}
 });
 
 function captureInfo(packageInfo, path) {
 	if ( ! packageInfo.client ) return;
-	var label = packageInfo.label || packageInfo.name;
+	var label = packageInfo.name;
 	var search = _.filter(clients, function(client){ return client.name === packageInfo.client; });
 	if (search.length !== 1) {
 		clients.push({name: packageInfo.client, projects: [{name: label, path: path}]});
