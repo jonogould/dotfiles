@@ -65,14 +65,13 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
-" Color Scheme
-syntax on
+" font settings
 set guifont=MesloLGLDZ:h12
-color ir_black
 
-" Status line gnarliness
-" set laststatus=2
-" set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+" color scheme
+syntax on
+set background=dark
+color solarized
 
 " Ctrlp
 let g:ctrlp_max_depth = 5
