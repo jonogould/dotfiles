@@ -34,12 +34,10 @@ EDITOR="/usr/bin/vim"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
 
+# Source ZSH
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-
-
-# Exports
+# Set NODE Exports
 export NODE_PATH="/usr/local/lib/node_modules"
 
 # Use Homebrew libs before system libs
@@ -69,13 +67,13 @@ alias gdt='git difftool'
 alias gc='git commit -m'
 alias gca='git commit -am'
 
-# Vim-inspired
-alias :e='vi'
+# Job & Process Management
+alias s='screen'
+alias sr='screen -r'
+
+# Vim inspired key mappings
+alias :e='mvim'
 alias :q='exit'
-
-# Template Previewer
-alias t='node ~/knnktr/template-previewer/app'
-
 
 
 # end of file
