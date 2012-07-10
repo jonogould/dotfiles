@@ -120,6 +120,12 @@ nnoremap <leader>1 yypVr=
 " Quick editing of .vimrc
 nnoremap <leader>rc <C-w><C-v><C-l>:e $MYVIMRC<cr>
 
+" Indentation
+nmap <C-[> <<
+nmap <C-]> >>
+vmap <C-[> <gv
+vmap <C-]> >gv
+
 " Bubble single lines
 nmap <C-k> [e
 nmap <C-j> ]e
