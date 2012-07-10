@@ -79,8 +79,7 @@ set guifont=MesloLGLDZ:h12
 
 " color scheme
 syntax on
-set background=light
-color ir_black
+color molokai
 
 " Ctrlp
 let g:ctrlp_max_depth = 5
