@@ -21,3 +21,5 @@ set winwidth=84
 set winheight=20
 set winminheight=20
 set winheight=999
+
+color Tomorrow-Night
