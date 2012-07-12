@@ -124,12 +124,6 @@ autocmd InsertLeave * :set relativenumber
 " Duplicate current line below and replace with equal signs
 nnoremap <leader>1 yypVr=
 
-" Textmate style indenting
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
-
 " Bubble single lines
 nmap <C-k> [e
 nmap <C-j> ]e
@@ -137,12 +131,6 @@ nmap <C-j> ]e
 " Bubble multiple lines
 vmap <C-k> [egv
 vmap <C-j> ]egv
-
-" Use cmd key to navigate windows
-" nmap <silent> <D-k> :wincmd k<CR>                                                                                                                       
-" nmap <silent> <D-j> :wincmd j<CR>                                                                                                                       
-" nmap <silent> <D-h> :wincmd h<CR>                                                                                                                       
-" nmap <silent> <D-l> :wincmd l<CR>
 
 " Rename Current File
 function! RenameFile()

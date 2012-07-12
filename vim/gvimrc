@@ -8,7 +8,7 @@ set guioptions=egmrt
 set guioptions-=r
 set nu
 
-color molokai
+color clouds-midnight
 
 " Don't show tabs
 set showtabline=0
