@@ -60,6 +60,4 @@ alias sr='screen -r'
 alias :e='mvim'
 alias :q='exit'
 
-cd knnktr
-
 # end of file
