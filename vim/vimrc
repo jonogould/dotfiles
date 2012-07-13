@@ -79,7 +79,7 @@ set guifont=MesloLGLDZ:h12
 
 " color scheme
 syntax on
-set background=light
+set background=dark
 color solarized
 
 " Ctrlp
