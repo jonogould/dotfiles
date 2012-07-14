@@ -80,7 +80,7 @@ set guifont=MesloLGLDZ:h12
 " color scheme
 syntax on
 set background=dark
-color solarized
+color Tomorrow
 
 " Ctrlp
 let g:ctrlp_max_height = 20
