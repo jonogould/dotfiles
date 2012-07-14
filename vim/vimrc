@@ -75,7 +75,7 @@ nnoremap <tab> %
 vnoremap <tab> %
 
 " font settings
-set guifont=MesloLGLDZ:h12
+set guifont=MesloLGLDZ:h13
 
 " color scheme
 syntax on
