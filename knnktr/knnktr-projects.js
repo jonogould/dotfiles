@@ -30,13 +30,15 @@ var projectsDir = HOME + '/knnktr';
 shell.cd(projectsDir);
 
 shell.ls().forEach(function (dir) {
-	var projectDir = projectsDir + '/' + dir;
-	try {
-		var packageInfo = fs.readFileSync(projectDir + '/package.json', 'utf8');
-		var path = projectDir;
-		captureInfo(JSON.parse(packageInfo), path);
-	} catch (e) {
-		// ...
+	if (dir !== 'archive') {
+		var projectDir = projectsDir + '/' + dir;
+		try {
+			var packageInfo = fs.readFileSync(projectDir + '/package.json', 'utf8');
+			var path = projectDir;
+			captureInfo(JSON.parse(packageInfo), path);
+		} catch (e) {
+			// ...
+		}
 	}
 });
 
