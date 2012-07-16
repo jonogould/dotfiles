@@ -8,7 +8,4 @@ set guioptions=egmrt
 set guioptions-=r
 set nu
 
-" Don't show tabs
-set showtabline=0
-
 color Tomorrow-Night

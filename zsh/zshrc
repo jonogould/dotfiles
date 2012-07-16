@@ -11,10 +11,7 @@ export PROJECTS=~/knnktr
 fpath=($DOTFILES/zsh/functions $fpath)
 autoload -U $DOTFILES/zsh/functions/*(:t)
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Theme ~/.oh-my-zsh/themes/
 ZSH_THEME="miloshadzic"
 
 # Set vim as editor
@@ -22,14 +19,10 @@ export EDITOR=vi
 
 export ACK_COLOR_MATCH='red'
 
-DISABLE_AUTO_UPDATE="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
+# Plugins ~/.oh-my-zsh/plugins/*
 plugins=(git)
 
-# Source OH-MY-ZSH
+# OH-MY-ZSH
 source $ZSH/oh-my-zsh.sh
 
 # Set NODE Exports
@@ -41,29 +34,10 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 PATH=$PATH:$HOME/.rvm/bin 			# Add RVM to PATH for scripting
 PATH=$PATH:~/.dotfiles/git/bin 		# Add git workflow scripts
 
-# ls
-alias ls="ls -FG"
-alias l="ls -lAhG"
-alias ll="ls -lG"
-alias la='ls -AG'
+source $DOTFILES/zsh/aliases.zsh
 
-# Git Aliases
-alias br='git checkout -b'
-alias branch='git checkout -b'
-alias ga='git add'
-alias gp='git push'
-alias gs='git status'
-alias gd='git diff'
-alias gdt='git difftool'
-alias gc='git commit -m'
-alias gca='git commit -am'
-
-# Job & Process Management
-alias s='screen'
-alias sr='screen -r'
-
-# Vim inspired key mappings
-alias :e='mvim'
-alias :q='exit'
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
 
 # end of file
