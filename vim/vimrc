@@ -109,7 +109,7 @@ nnoremap <leader>gc :Gcommit<cr>
 syntax on
 set background=dark
 color Tomorrow
-set guifont=MesloLGLDZ:h12
+set guifont=MesloLGLDZ:h13
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
