@@ -21,7 +21,7 @@ export EDITOR=vi
 export ACK_COLOR_MATCH='red'
 
 # Plugins ~/.oh-my-zsh/plugins/*
-plugins=(git)
+plugins=(git nyan)
 
 # OH-MY-ZSH
 source $ZSH/oh-my-zsh.sh
