@@ -102,11 +102,8 @@ set guifont=MesloLGLDZ:h12
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_max_height = 20
 map <C-p> :CtrlP <CR>
-" Ignore these directories
-let g:ctrlp_custom_ignore = 'node_modules'
-" Look for nearest index.php
-let g:ctrlp_root_markers = ['index.php']
-let g:ctrlp_working_path_mode = 2
+let g:ctrlp_custom_ignore = 'node_modules' " Ignore these directories
+let g:ctrlp_working_path_mode = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Relative Line Numbers
