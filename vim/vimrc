@@ -145,7 +145,7 @@ function! RenameFile()
 		redraw!
 	endif
 endfunction
-map <leader>n :call RenameFile()<cr>
+map <leader>mv :call RenameFile()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Md5 COMMAND
