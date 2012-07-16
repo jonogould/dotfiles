@@ -22,16 +22,18 @@ set showtabline=2
 set guitablabel=%t
 set laststatus=2
 
-" Search
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Search
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set ignorecase smartcase
 set gdefault
 set incsearch
 set showmatch
 set hlsearch
 
-" ----------------------------------------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  UI
-" ----------------------------------------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " show the cursor position all the time
 set ruler
 " don't display incomplete commands
@@ -41,6 +43,7 @@ set number numberwidth=5
 " turn on wild menu
 set wildmenu
 set wildmode=list:longest,full
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so,*.un,*.un~,.DS_store,*.swp
 " allow backspacing over everything in insert mode
 set backspace=2
 " don't jump to the start of line when scrolling
@@ -57,15 +60,11 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 filetype plugin indent on
 
-" Wildcard ignores
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so,*.un,*.un~,.DS_store,*.swp
-
 " Autosave on focus lost
 au FocusLost * :silent! wa!
 au BufLeave * :silent! wa!
 
 let mapleader = '\'
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc Key Maps
