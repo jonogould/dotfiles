@@ -12,21 +12,15 @@ set nocompatible
 set hidden
 set encoding=utf-8
 set scrolloff=3
-set number
-set numberwidth=4
-set mousehide
+set number numberwidth=5
 set nowrap
 set cursorline
-set visualbell
 set showcmd
 set showmode
 set autoindent
-set tabstop=4
-set shiftwidth=4
 set smarttab
 set ts=4 sw=4
 set showtabline=2
-set numberwidth=5
 set guitablabel=%t
 
 " Search
