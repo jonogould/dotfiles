@@ -1,6 +1,16 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+# Path to dotfiles
+DOTFILES=$HOME/.dotfiles
+
+# Your project folder that we can `c [tab]` to
+export PROJECTS=~/knnktr
+
+# Autoload Functions
+fpath=($DOTFILES/zsh/functions $fpath)
+autoload -U $DOTFILES/zsh/functions/*(:t)
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -19,7 +29,7 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
 
-# Source ZSH
+# Source OH-MY-ZSH
 source $ZSH/oh-my-zsh.sh
 
 # Set NODE Exports
@@ -30,10 +40,6 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin 			# Add RVM to PATH for scripting
 PATH=$PATH:~/.dotfiles/git/bin 		# Add git workflow scripts
-PATH=$PATH:~/.dotfiles/sublime/bin 	# Add sublime workflow scripts
-
-PATH=$PATH:~/.dotfiles/knnktr		# Add knnktr scripts
-source knnktr 						# source knnktr scripts
 
 # ls
 alias ls="ls -FG"
