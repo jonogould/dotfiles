@@ -43,9 +43,9 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so,*.un,*.un~,.DS_store,*.swp
 set backspace=2                           " allow backspacing over everything in insert mode
 set nostartofline                         " don't jump to the start of line when scrolling
 
-" ----------------------------------------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Temporary Files
-" ----------------------------------------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set undofile
 set backup
 set undodir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -54,7 +54,9 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 filetype plugin indent on
 
-" Autosave on focus lost
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autosave
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au FocusLost * :silent! wa!
 au BufLeave * :silent! wa!
 
