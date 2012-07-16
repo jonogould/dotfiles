@@ -68,12 +68,6 @@ nmap <C-j> ]e
 " Bubble multiple lines
 vmap <C-k> [egv
 vmap <C-j> ]egv
-" Add blank lines
-map <up> [ 
-map <down> ] 
-" File Navigation
-map <left> [o
-map <right> ]o
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Split Sizing
