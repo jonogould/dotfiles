@@ -105,8 +105,6 @@ set guifont=MesloLGLDZ:h12
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_max_height = 20
 map <C-p> :CtrlP <CR>
-map <D-p> :CtrlP <CR>
-map <leader>p :CtrlP <CR>
 " Ignore these directories
 let g:ctrlp_custom_ignore = 'node_modules'
 " Look for nearest index.php
@@ -132,7 +130,8 @@ autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Rename Current File
+" Rename Current File COMMAND
+" Taken from Gary Bernhardt's .vimrc: https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
 	let old_name = expand('%')
@@ -148,14 +147,14 @@ map <leader>n :call RenameFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Md5 COMMAND
 " Show the MD5 of the current buffer
-" Copied from Gary Bernhardt's .vimrc
+" Taken from Gary Bernhardt's .vimrc: https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! -range Md5 :echo system('echo '.shellescape(join(getline(<line1>, <line2>), '\n')) . '| md5')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OpenChangedFiles COMMAND
 " Open a split for each dirty file in git
-" Copied from Gary Bernhardt's .vimrc
+" Taken from Gary Bernhardt's .vimrc: https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! OpenChangedFiles()
   only " Close all windows, unless they're modified
@@ -171,7 +170,7 @@ command! OpenChangedFiles :call OpenChangedFiles()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " InsertTime COMMAND
 " Insert the current time
-" Copied from Gary Bernhardt's .vimrc
+" Taken from Gary Bernhardt's .vimrc: https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S %z')<cr>
 
