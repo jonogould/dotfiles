@@ -180,3 +180,5 @@ command! OpenChangedFiles :call OpenChangedFiles()
 " Copied from Gary Bernhardt's .vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S %z')<cr>
+
+" End of file
