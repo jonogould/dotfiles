@@ -38,7 +38,6 @@ set noshowcmd                             " don't display incomplete commands
 set nolazyredraw
 set number numberwidth=5
 set wildmenu                              " turn on wild menu
-set wildmode=list:longest,full
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so,*.un,*.un~,.DS_store,*.swp
 set backspace=2                           " allow backspacing over everything in insert mode
 set nostartofline                         " don't jump to the start of line when scrolling

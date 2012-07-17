@@ -7,4 +7,8 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 PROMPT='%{$fg[cyan]%}%1~%{$reset_color%}%{$fg[red]%}|%{$reset_color%}$(git_prompt_info)%{$fg[cyan]%}⇒%{$reset_color%} '
 
-RPROMPT=`date`
+function the_date {
+    echo `date`
+}
+
+RPROMPT='$(the_date)'
