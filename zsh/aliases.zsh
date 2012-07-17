@@ -8,11 +8,10 @@ alias la='ls -AG'
 alias br='git checkout -b'
 alias branch='git checkout -b'
 alias ga='git add'
-alias gp='git push'
+alias gpom='git push origin master'
 alias gs='git status'
 alias gd='git diff'
 alias gdt='git difftool'
-alias gc='git commit -m'
 alias gca='git commit -am'
 
 # Job & Process Management
@@ -23,5 +22,5 @@ alias sr='screen -r'
 alias :e='mvim'
 alias :q='exit'
 
-# Directory Tree
+# Tree
 alias tr='tree -d --prune -L 3'
