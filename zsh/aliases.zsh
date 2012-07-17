@@ -22,3 +22,6 @@ alias sr='screen -r'
 # Vim inspired key mappings
 alias :e='mvim'
 alias :q='exit'
+
+# Directory Tree
+alias tr='tree -d --prune -L 3'
