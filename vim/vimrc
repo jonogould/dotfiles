@@ -41,6 +41,7 @@ set wildmenu                              " turn on wild menu
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so,*.un,*.un~,.DS_store,*.swp
 set backspace=2                           " allow backspacing over everything in insert mode
 set nostartofline                         " don't jump to the start of line when scrolling
+let html_no_rendering=1                   " dont use bold / underline / italics for html
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Temporary Files
@@ -78,6 +79,8 @@ nmap <C-j> ]e
 " Bubble multiple lines
 vmap <C-k> [egv
 vmap <C-j> ]egv
+" Faster bracket matching
+map <Tab> %
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Split Sizing
