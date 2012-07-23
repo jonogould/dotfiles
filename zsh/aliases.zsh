@@ -24,3 +24,6 @@ alias :q='exit'
 
 # Tree
 alias tr='tree -d --prune -L 3'
+
+# Hosts
+alias :knnktr='ssh knnktr.com'
