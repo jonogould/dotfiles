@@ -22,14 +22,15 @@ FORMAT="$HASH}$ABSTIME}$AUTHOR} $SUBJECT"
 
 today() {
 	git log --graph --since="6am" --pretty="tformat:${FORMAT}" $* |
-	# Replace (2 years ago) with (2 years)
-	sed -Ee 's/(^[^<]*) ago)/\1)/' |
-	# Replace (2 years, 5 months) with (2 years)
-	sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?)/\1)/' |
 	# Line columns up based on }delimiter
 	column -s '}' -t |
 	# Page only if we need to
 	less -FXRS
+	# Count commits
+	COUNT=`git log --graph --since="6am" --oneline |
+	wc -l |
+	sed 's/^ *//g'`
+	echo "  ${COUNT} commits since 6am"
 }
 
 # Job & Process Management
