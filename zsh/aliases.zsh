@@ -13,7 +13,24 @@ alias gs='git status'
 alias gd='git diff'
 alias gdt='git difftool'
 alias gca='git commit -am'
-alias today='git log --oneline --since="6am"'
+
+HASH="%C(yellow)%h%Creset"
+RELATIVE_TIME="%Cgreen(%ar)%Creset"
+AUTHOR="%C(bold blue)<%an>%Creset"
+SUBJECT="%s"
+FORMAT="$HASH}$RELATIVE_TIME}$AUTHOR} $SUBJECT"
+
+today() {
+	git log --graph --since="6am" --pretty="tformat:${FORMAT}" $* |
+	# Replace (2 years ago) with (2 years)
+	sed -Ee 's/(^[^<]*) ago)/\1)/' |
+	# Replace (2 years, 5 months) with (2 years)
+	sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?)/\1)/' |
+	# Line columns up based on }delimiter
+	column -s '}' -t |
+	# Page only if we need to
+	less -FXRS
+}
 
 # Job & Process Management
 alias s='screen'
