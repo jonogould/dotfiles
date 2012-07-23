@@ -19,9 +19,10 @@ ABSTIME="%Cgreen(%cd)%Creset"
 AUTHOR="%C(bold blue)<%an>%Creset"
 SUBJECT="%s"
 FORMAT="$HASH}$ABSTIME}$AUTHOR} $SUBJECT"
+SINCE="6am"
 
 today() {
-	git log --graph --since="6am" --pretty="tformat:${FORMAT}" $* |
+	git log --graph --since="${SINCE}" --pretty="tformat:${FORMAT}" $* |
 	# Line columns up based on }delimiter
 	column -s '}' -t |
 	# Page only if we need to
@@ -30,7 +31,7 @@ today() {
 	COUNT=`git log --graph --since="6am" --oneline |
 	wc -l |
 	sed 's/^ *//g'`
-	echo "  ${COUNT} commits since 6am"
+	echo "  ${COUNT} commits since ${SINCE}"
 }
 
 # Job & Process Management
