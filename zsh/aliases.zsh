@@ -15,10 +15,10 @@ alias gdt='git difftool'
 alias gca='git commit -am'
 
 HASH="%C(yellow)%h%Creset"
-RELATIVE_TIME="%Cgreen(%ar)%Creset"
+ABSTIME="%Cgreen(%cd)%Creset"
 AUTHOR="%C(bold blue)<%an>%Creset"
 SUBJECT="%s"
-FORMAT="$HASH}$RELATIVE_TIME}$AUTHOR} $SUBJECT"
+FORMAT="$HASH}$ABSTIME}$AUTHOR} $SUBJECT"
 
 today() {
 	git log --graph --since="6am" --pretty="tformat:${FORMAT}" $* |
