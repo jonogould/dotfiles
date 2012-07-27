@@ -110,7 +110,7 @@ nnoremap <leader>gc :Gcommit<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 set background=dark
-color Tomorrow
+color Tomorrow-Night
 set guifont=MesloLGLDZ:h13
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
