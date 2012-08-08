@@ -1,7 +1,7 @@
 # ls
 alias ls="ls -FG"
 alias l="ls -lAhG"
-alias ll="ls -lG"
+alias ll="ls -lAhG"
 alias la='ls -AG'
 
 # Git Aliases
