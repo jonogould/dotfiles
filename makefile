@@ -1,9 +1,13 @@
 all:
-	@echo 'Creating symlinks'
+	@echo 'Creating folders'
 	@echo ''
 
-	# Create temp folder
-	@mkdir ~/.tmp
+	# Create temp folders
+	@mkdir ~/.vim-tmp
+	@touch ~/.dotfiles/vim/local
+
+	@echo 'Creating symlinks'
+	@echo ''
 
 	# Vim Config
 	rm -rf ~/.vim && rm -f ~/.vimrc && rm -f ~/.gvimrc
