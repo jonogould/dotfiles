@@ -4,6 +4,9 @@ alias l="ls -lAhG"
 alias ll="ls -lhG"
 alias la='ls -AG'
 
+# Homebrew
+alias bu='brew update && brew upgrade'
+
 # Git Aliases
 alias br='git checkout -b'
 alias branch='git checkout -b'
