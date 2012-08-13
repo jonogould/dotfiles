@@ -4,8 +4,9 @@ alias l="ls -lAhG"
 alias ll="ls -lhG"
 alias la='ls -AG'
 
-# Homebrew
+# Software updates
 alias bu='brew update && brew upgrade'
+alias nu='sudo npm update -g'
 
 # Git Aliases
 alias br='git checkout -b'
