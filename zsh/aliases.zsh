@@ -7,12 +7,17 @@ alias la='ls -AG'
 # Software updates
 alias bu='brew update && brew upgrade'
 alias nu='sudo npm update -g'
-alias ku='update-knnktr-projects'
+alias ku='update-my-projects'
 
-update-knnktr-projects() {
-	for dir in $PROJECTS/*;
-	do (cd $dir && git pull origin master);
-	done;
+update-my-projects() {
+	# Loop through $PROJECTS directory
+	# and update all git repo's
+	for dir in $PROJECTS/*
+	do
+		if [ -d "$dir/.git" ]; then
+			(cd $dir && git pull origin master)
+		fi
+	done
 	cd $PROJECTS
 }
 
