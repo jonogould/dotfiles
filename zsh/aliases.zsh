@@ -10,9 +10,10 @@ alias nu='sudo npm update -g'
 alias ku='update-knnktr-projects'
 
 update-knnktr-projects() {
-	for dir in ~/knnktr/*;
+	for dir in $PROJECTS/*;
 	do (cd $dir && git pull origin master);
 	done;
+	cd $PROJECTS
 }
 
 # Git Aliases
