@@ -7,6 +7,13 @@ alias la='ls -AG'
 # Software updates
 alias bu='brew update && brew upgrade'
 alias nu='sudo npm update -g'
+alias ku='update-knnktr-projects'
+
+update-knnktr-projects() {
+	for dir in ~/knnktr/*;
+	do (cd $dir && git pull origin master);
+	done;
+}
 
 # Git Aliases
 alias br='git checkout -b'
