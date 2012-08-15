@@ -31,7 +31,7 @@ ABSTIME="%Cgreen(%cd)%Creset"
 AUTHOR="%C(bold blue)<%an>%Creset"
 SUBJECT="%s"
 FORMAT="$HASH}$ABSTIME}$AUTHOR} $SUBJECT"
-SINCE="6am"
+SINCE="4am"
 
 today() {
 	git log --graph --since="${SINCE}" --pretty="tformat:${FORMAT}" $* |
@@ -40,7 +40,7 @@ today() {
 	# Page only if we need to
 	less -FXRS
 	# Count commits
-	COUNT=`git log --graph --since="6am" --oneline |
+	COUNT=`git log --graph --since=$SINCE --oneline |
 	wc -l |
 	sed 's/^ *//g'`
 	echo "  ${COUNT} commits since ${SINCE}"
