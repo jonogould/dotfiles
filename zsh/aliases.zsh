@@ -1,6 +1,6 @@
 # ls
 alias ls="ls -FG"
-alias l="ls -lAhG"
+alias l="ls -lhG"
 alias ll="ls -lhG"
 alias la='ls -AG'
 
