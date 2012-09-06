@@ -68,6 +68,8 @@ let mapleader = '\'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fullscreen
 nnoremap <leader>fu :set invfu<cr>
+" NERDTree
+nnoremap <leader>t :NERDTreeToggle<cr>
 " Open .vimrc in a split
 nnoremap <leader>rc <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " Create a new vertical split and switch to it
