@@ -10,4 +10,4 @@ set guioptions=egmrt
 set guioptions-=r
 set nu
 
-color Tomorrow-Night-Bright
+color getafe
