@@ -10,4 +10,4 @@ set guioptions=egmrt
 set guioptions-=r
 set nu
 
-color molokai-mod
+color grb256
