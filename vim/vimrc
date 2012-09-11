@@ -37,7 +37,7 @@ set hlsearch
 set ruler                                 " show the cursor position all the time
 set noshowcmd                             " don't display incomplete commands
 set nolazyredraw
-set number numberwidth=5
+set number numberwidth=4
 set wildmenu                              " turn on wild menu
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so,*.un,*.un~,.DS_store,*.swp
 set backspace=2                           " allow backspacing over everything in insert mode
