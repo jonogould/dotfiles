@@ -6,14 +6,15 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh
 DOTFILES=$HOME/.dotfiles
 
 # Your project folder that we can `c [tab]` to
-export PROJECTS=~/knnktr
+export PROJECTS=~/Sites/knnktr
 
 # Autoload Functions
 fpath=($DOTFILES/zsh/functions $fpath)
 autoload -U $DOTFILES/zsh/functions/*(:t)
 
 # Theme ~/.oh-my-zsh/themes/
-ZSH_THEME="my-theme"
+# ZSH_THEME="my-theme"
+ZSH_THEME="miloshadzic"
 
 # Set vim as editor
 export EDITOR=vi
@@ -41,6 +42,8 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # Append to PATH
 PATH=$PATH:$HOME/.rvm/bin 		# Add RVM to PATH for scripting
 PATH=$PATH:~/.dotfiles/git/bin 	# Add git workflow scripts
+PATH=$PATH:/Users/jono/node_modules/yeoman/bin
+
 
 # Import aliases
 source $DOTFILES/zsh/aliases.zsh

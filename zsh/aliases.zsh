@@ -1,3 +1,19 @@
+#custom
+alias c="cd"
+alias zshc="st ~/.dotfiles/zsh"
+alias cdc="~/Documents/Dropbox/CTI"
+
+function take() {
+  mkdir -p $1
+  cd $1
+}
+
+function stake() {
+  touch $1
+  open /Applications/Sublime\ Text\ 2.app
+  st $1
+}
+
 # ls
 alias ls="ls -FG"
 alias l="ls -lhG"
