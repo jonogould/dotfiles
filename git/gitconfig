@@ -1,6 +1,6 @@
 [user]
-	name = Wayne Berry
-	email = wayneashleyberry@gmail.com
+	name = Jono Gould
+	email = redacted@example.com
 [alias]
 	st = status
 	co = checkout
@@ -61,3 +61,5 @@
 	tool = Kaleidoscope
 [core]
 	excludesfile = ~/.dotfiles/git/gitignore
+[credential]
+	helper = osxkeychain

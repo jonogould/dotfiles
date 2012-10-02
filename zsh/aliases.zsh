@@ -9,9 +9,9 @@ function take() {
 }
 
 function stake() {
-  touch $1
-  open /Applications/Sublime\ Text\ 2.app
-  st $1
+  mkdir -p $1
+  cd $1
+  st .
 }
 
 # ls
