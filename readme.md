@@ -5,14 +5,14 @@
 Warning... This will remove all of your current dotfiles!
 
 ```
-curl https://raw.github.com/wayneashleyberry/dotfiles/master/install.sh | sh
+curl https://github.com/jonogould/dotfiles/blob/master/install.sh | sh
 ```
 
 ### More than one line install
 
 ```
 cd ~
-git clone git@github.com:wayneashleyberry/dotfiles.git
+git clone git@github.com:jonogould/dotfiles.git
 cd .dotfiles
 git submodule init
 git submodule update
