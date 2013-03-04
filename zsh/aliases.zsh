@@ -1,7 +1,7 @@
 #custom
 alias c="cd"
 alias zshc="sublime ~/.dotfiles/zsh"
-alias cw="cd /var/www/"
+alias cw="cd /home/jono/Sites"
 alias st="sublime"
 
 function take() {
