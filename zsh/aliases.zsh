@@ -2,7 +2,7 @@
 alias c="cd"
 alias zshc="sublime ~/.dotfiles/zsh &"
 alias cw="cd /home/jono/Sites"
-alias st="sublime &"
+alias st="sublime"
 
 function take() {
   mkdir -p $1
