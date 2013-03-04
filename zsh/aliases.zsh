@@ -1,7 +1,8 @@
 #custom
 alias c="cd"
-alias zshc="st ~/.dotfiles/zsh"
+alias zshc="sublime ~/.dotfiles/zsh"
 alias cw="cd /var/www/"
+alias st="sublime"
 
 function take() {
   mkdir -p $1
@@ -11,7 +12,7 @@ function take() {
 function stake() {
   mkdir -p $1
   cd $1
-  st .
+  sublime .
 }
 
 # ls
