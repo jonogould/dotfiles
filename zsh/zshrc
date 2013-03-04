@@ -40,9 +40,10 @@ export NODE_PATH="/usr/local/lib/node_modules"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # Append to PATH
+PATH=$PATH:/opt/homebrew/bin
 PATH=$PATH:$HOME/.rvm/bin 		# Add RVM to PATH for scripting
 PATH=$PATH:~/.dotfiles/git/bin 	# Add git workflow scripts
-PATH=$PATH:/Users/jono/node_modules/yeoman/bin
+#PATH=$PATH:/Users/jono/node_modules/yeoman/bin
 
 
 # Import aliases
