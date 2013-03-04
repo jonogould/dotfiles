@@ -1,7 +1,7 @@
 #custom
 alias c="cd"
 alias zshc="st ~/.dotfiles/zsh"
-alias cdc="~/Documents/Dropbox/CTI"
+alias cw="cd /var/www/"
 
 function take() {
   mkdir -p $1
@@ -72,7 +72,7 @@ alias s='screen'
 alias sr='screen -r'
 
 # Vim inspired key mappings
-alias :e='mvim'
+alias :e='gvim'
 alias :q='exit'
 
 # Tree
