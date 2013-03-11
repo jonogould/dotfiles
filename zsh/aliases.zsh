@@ -2,10 +2,10 @@
 alias c="cd"
 alias zshc="sublime ~/.dotfiles/zsh &"
 alias cw="cd /home/jono/Sites"
-alias tg="cd /home/jono/Sites/traveground.com"
-alias st="sublime"
+alias tg="cd /home/jono/Sites/tg"
+#alias st="sublime"
 
-alias _="sudo "
+alias _="sudo"
 
 function take() {
   mkdir -p $1
@@ -15,7 +15,7 @@ function take() {
 function stake() {
   mkdir -p $1
   cd $1
-  sublime .&
+  stt
 }
 
 # ls

@@ -17,12 +17,12 @@ autoload -U $DOTFILES/zsh/functions/*(:t)
 ZSH_THEME="miloshadzic"
 
 # Set vim as editor
-export EDITOR=vi
+export EDITOR=sublime
 
 export ACK_COLOR_MATCH='red'
 
 # Plugins ~/.oh-my-zsh/plugins/*
-plugins=(git)
+plugins=(git, sublime)
 
 # https://github.com/rupa/z
 . ~/.dotfiles/zsh/plugins/z.sh
