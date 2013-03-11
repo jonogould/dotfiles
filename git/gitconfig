@@ -62,4 +62,4 @@
 [core]
 	excludesfile = ~/.dotfiles/git/gitignore
 [credential]
-	helper = osxkeychain
+	helper = cache --timeout=3600

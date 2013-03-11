@@ -2,7 +2,10 @@
 alias c="cd"
 alias zshc="sublime ~/.dotfiles/zsh &"
 alias cw="cd /home/jono/Sites"
+alias tg="cd /home/jono/Sites/traveground.com"
 alias st="sublime"
+
+alias _="sudo "
 
 function take() {
   mkdir -p $1
@@ -12,7 +15,7 @@ function take() {
 function stake() {
   mkdir -p $1
   cd $1
-  sublime . &
+  sublime .&
 }
 
 # ls
@@ -53,7 +56,7 @@ ABSTIME="%Cgreen(%cd)%Creset"
 AUTHOR="%C(bold blue)<%an>%Creset"
 SUBJECT="%s"
 FORMAT="$HASH}$ABSTIME}$AUTHOR} $SUBJECT"
-SINCE="4am"
+SINCE="6am"
 
 today() {
 	git log --graph --since="${SINCE}" --pretty="tformat:${FORMAT}" $* |
@@ -78,6 +81,3 @@ alias :q='exit'
 
 # Tree
 alias tr='tree -d --prune -L 3'
-
-# Hosts
-alias :knnktr='ssh knnktr.com'
