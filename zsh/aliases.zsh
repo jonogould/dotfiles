@@ -45,11 +45,12 @@ alias branch='git checkout -b'
 alias ga='git add'
 alias gpom='git push origin master'
 alias gs='git status'
-alias gs='git status -s'
+alias gss='git status -s'
 alias gd='git diff'
 alias gdt='git difftool'
 alias gca='git commit -am'
 alias gco='git checkout'
+alias gcm='git checkout master'
 alias gba='git branch -a'
 
 
