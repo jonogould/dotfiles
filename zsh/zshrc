@@ -17,7 +17,7 @@ autoload -U $DOTFILES/zsh/functions/*(:t)
 ZSH_THEME="miloshadzic"
 
 # Set vim as editor
-export EDITOR=sublime
+export EDITOR=vim
 
 export ACK_COLOR_MATCH='red'
 

@@ -3,8 +3,6 @@ alias c="cd"
 alias zshc="sublime ~/.dotfiles/zsh &"
 alias cw="cd /home/jono/Sites"
 alias tg="cd /home/jono/Sites/tg"
-#alias st="sublime"
-
 alias _="sudo"
 
 function take() {
@@ -47,9 +45,13 @@ alias branch='git checkout -b'
 alias ga='git add'
 alias gpom='git push origin master'
 alias gs='git status'
+alias gs='git status -s'
 alias gd='git diff'
 alias gdt='git difftool'
 alias gca='git commit -am'
+alias gco='git checkout'
+alias gba='git branch -a'
+
 
 HASH="%C(yellow)%h%Creset"
 ABSTIME="%Cgreen(%cd)%Creset"
