@@ -1,6 +1,6 @@
 #custom
 alias c="cd"
-alias zshc="sublime ~/.dotfiles/zsh &"
+alias zshc="st ~/.dotfiles/zsh &"
 alias cw="cd /home/jono/Sites"
 alias tg="cd /home/jono/Sites/tg"
 alias _="sudo"
