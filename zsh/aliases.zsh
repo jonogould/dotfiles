@@ -1,8 +1,8 @@
 #custom
 alias c="cd"
-alias zshc="st ~/.dotfiles/zsh &"
-alias cw="cd /home/jono/Sites"
-alias tg="cd /home/jono/Sites/tg"
+alias zshrc="st ~/.dotfiles/zsh &"
+alias cw="cd /Users/jono/Sites"
+alias tg="cd /Users/jono/Sites/tg"
 alias _="sudo"
 
 function take() {

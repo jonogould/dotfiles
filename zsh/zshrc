@@ -6,7 +6,7 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh
 DOTFILES=$HOME/.dotfiles
 
 # Your project folder that we can `c [tab]` to
-export PROJECTS=~/Sites/knnktr
+export PROJECTS=~/Sites
 
 # Autoload Functions
 fpath=($DOTFILES/zsh/functions $fpath)
