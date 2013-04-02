@@ -2,7 +2,7 @@
 alias c="cd"
 alias zshrc="st ~/.dotfiles/zsh &"
 alias cw="cd /Users/jono/Sites"
-alias tg="cd /Users/jono/Sites/tg"
+alias tg="cd /var/www/dev.travelground"
 alias _="sudo"
 
 function take() {
