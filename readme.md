@@ -12,7 +12,7 @@ curl https://raw.github.com/jonogould/dotfiles/master/install.sh | sh
 
 ```
 cd ~
-git clone git@github.com:jonogould/dotfiles.git
+git clone git@github.com:jonogould/dotfiles.git .dotfiles
 cd .dotfiles
 git submodule init
 git submodule update
