@@ -1,9 +1,13 @@
 #custom
 alias c="cd"
-alias zshrc="st ~/.dotfiles/zsh &"
+alias zshrc="subl ~/.dotfiles/zsh &"
 alias cw="cd /Users/jono/Sites"
 alias tg="cd /var/www/dev.travelground"
 alias _="sudo"
+
+#configs
+alias c_nginx="subl /usr/local/etc/nginx/nginx.conf"
+alias c_php="subl /usr/local/etc/php/5.5/php.ini"
 
 function take() {
   mkdir -p $1
