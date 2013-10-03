@@ -1,7 +1,7 @@
 #custom
 alias c="cd"
 alias zshrc="subl ~/.dotfiles/zsh &"
-alias cw="cd /Users/jono/Sites"
+alias cw="cd /Users/admin/Sites"
 alias tg="cd /var/www/dev.travelground"
 alias _="sudo"
 
