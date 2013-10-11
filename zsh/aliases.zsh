@@ -1,11 +1,12 @@
 #custom
 alias c="cd"
-alias zshrc="subl ~/.dotfiles/zsh &"
 alias cw="cd /Users/admin/Sites"
 alias tg="cd /var/www/dev.travelground"
 alias _="sudo"
+alias composer="php ~/.tools/composer.phar"
 
 #configs
+alias c_dot="subl ~/.dotfiles"
 alias c_nginx="subl /usr/local/etc/nginx/nginx.conf"
 alias c_php="subl /usr/local/etc/php/5.5/php.ini"
 
