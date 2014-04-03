@@ -1,0 +1,4 @@
+function tezt() {
+  ssh test@$1
+  sshfs test@$1:/var/www/dev.travelground ~/mnt
+}

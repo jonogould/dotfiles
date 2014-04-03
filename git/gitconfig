@@ -1,11 +1,13 @@
 [user]
-	name = Jono Gould
+	name = jonogould
 	email = redacted@example.com
 [alias]
 	st = status
 	co = checkout
 	unstage = reset HEAD
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+
+	diffh = "!f() { git diff \"$@\" | ~/.dotfiles/git/contrib/diff-highlight; }; f"
 
 	# Divergence (commits we added and commits remote added)
 	div = divergence
@@ -29,7 +31,6 @@
 	l = "!source ~/.dotfiles/git/bin/githelpers && pretty_git_log"
 	la = !git l --all
 
-[difftool "Kaleidoscope"]
 [difftool]
 [diff]
 [color]
@@ -53,13 +54,13 @@
   untracked = red
 [color "sh"]
   branch = yellow
-[difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [difftool]
 	prompt = false
 [diff]
-	tool = Kaleidoscope
+	tool = gitk
 [core]
 	excludesfile = ~/.dotfiles/git/gitignore
 [credential]
-	helper = cache --timeout=3600
+	helper = osxkeychain
+[push]
+	default = simple
