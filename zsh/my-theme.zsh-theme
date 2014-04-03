@@ -6,9 +6,3 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%}⚡%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 PROMPT='%{$fg[cyan]%}%1~%{$reset_color%}%{$fg[red]%}|%{$reset_color%}$(git_prompt_info)%{$fg[cyan]%}⇒%{$reset_color%} '
-
-function the_date {
-    echo `date "+%a %b %d %T %Y"`
-}
-
-RPROMPT='$(the_date)'

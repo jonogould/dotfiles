@@ -14,9 +14,6 @@ export DOTFILES=$HOME/.dotfiles
 export PROJECTS=~/Sites
 export TOOLS=~/.tools
 
-# pure prompt
-. $DOTFILES/zsh/prompt.zsh
-
 # Autoload Functions
 fpath=($DOTFILES/zsh/functions $fpath)
 autoload -U $DOTFILES/zsh/functions/*(:t)
@@ -25,7 +22,9 @@ autoload -U $DOTFILES/zsh/functions/*(:t)
 plugins=(git brew vagrant sublime)
 
 # Theme ~/.oh-my-zsh/themes/
+ ZSH_THEME="my-theme"
 # ZSH_THEME="miloshadzic"
+# . $DOTFILES/zsh/prompt.zsh
 
 # https://github.com/rupa/z
 . $DOTFILES/zsh/plugins/z.sh
@@ -49,7 +48,7 @@ PATH=$PATH:/opt/homebrew/bin
 PATH=$PATH:$DOTFILES/git/bin
 
 # tools
-PATH=$PATH:$TOOLS/minify
+# PATH=$PATH:$TOOLS/minify
 
 # Import aliases
 source $DOTFILES/zsh/aliases.zsh
