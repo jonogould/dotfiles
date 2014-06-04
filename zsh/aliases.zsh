@@ -25,13 +25,14 @@ alias md='mkdir -p'
 # Git
 alias gb='git checkout -b'
 alias ga='git add --all'
-alias gs='git status -sb'
+alias gs='git status -s'
+alias gc="git commit -m"
+alias gp='git push'
 alias gca='git commit -am'
 alias gco='git checkout'
 alias gcm='git checkout master'
 alias gba='git branch -a'
 alias gpl='git pull'
-alias gp='git push'
 
 # Python
 alias py='python3'

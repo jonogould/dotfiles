@@ -3,7 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/.dotfiles/zsh
 export DISABLE_AUTO_UPDATE="true"
 export DISABLE_AUTO_TITLE="true"
-export EDITOR=subl
+export EDITOR=vim
 
 # rubby
 export RBENV_ROOT=/usr/local/var/rbenv
