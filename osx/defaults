@@ -1,3 +1,6 @@
+# Show all hidden files in finder, etc
+defaults write com.apple.finder AppleShowAllFiles TRUE
+
 # Disable swipe navigation in Chrome
 defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
 
