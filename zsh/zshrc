@@ -36,12 +36,15 @@ function precmd () {
 # oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# zsh-syntax-highlighting
+source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # NODE Exports
 export NODE_PATH="/usr/local/lib/node_modules"
 
 # Homebrew binaries
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
-PATH="$(brew --prefix josegonzalez/php/php55)/bin:$PATH"
+PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 PATH=$PATH:/opt/homebrew/bin
 
 # git workflow scripts
@@ -58,3 +61,4 @@ autoload -U compinit
 compinit
 
 unset MAILCHECK
+
