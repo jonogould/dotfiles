@@ -5,7 +5,7 @@ export DISABLE_AUTO_UPDATE="true"
 export DISABLE_AUTO_TITLE="true"
 export EDITOR=vim
 
-# rubby
+# ruby
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -43,6 +43,7 @@ source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export NODE_PATH="/usr/local/lib/node_modules"
 
 # Homebrew binaries
+PATH=~/.composer/vendor/bin:$PATH
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 PATH=$PATH:/opt/homebrew/bin
@@ -52,6 +53,8 @@ PATH=$PATH:$DOTFILES/git/bin
 
 # tools
 # PATH=$PATH:$TOOLS/minify
+PATH=$PATH:$TOOLS
+
 
 # Import aliases
 source $DOTFILES/zsh/aliases.zsh
@@ -62,3 +65,5 @@ compinit
 
 unset MAILCHECK
 
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

@@ -1,6 +1,7 @@
 #custom
 alias c="cd"
-alias cw="cd /Users/admin/Sites"
+alias cw="cd ~/Sites"
+alias cc="cd ~/Code"
 alias _="sudo"
 
 #configs
@@ -12,16 +13,9 @@ alias c_php="subl /usr/local/etc/php/5.5/php.ini"
 alias composer="php ~/.tools/composer.phar"
 alias phpunit="php ~/.tools/phpunit.phar"
 
-#travelground
-alias test_supp="phpunit --bootstrap tests/bootstrap/autoload.php"
-alias stage="curl --user tg:tg 'stage.travelground.com/call_stage.php?code=u89ami7g3z2a&s'"
-
-alias tg="cd /var/www/dev.travelground"
-
-function gimme() {
-  ~/Code/TG/vm/gimme/gimme.sh $1
-  tail -f tsync-j_${$1//+([^-!/])/_}.log
-}
+#homestead
+alias artisan="php artisan"
+alias hsd="cd ~/Homestead"
 
 # ls
 alias l="ls -lhG"
