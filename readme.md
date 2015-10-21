@@ -5,7 +5,7 @@
 Warning... This will remove all of your current dotfiles!
 
 ```
-curl https://raw.github.com/jonogould/dotfiles/master/install.sh | sh
+curl https://raw.githubusercontent.com/jonogould/dotfiles/master/install.sh | sh
 ```
 
 ### More than one line install
