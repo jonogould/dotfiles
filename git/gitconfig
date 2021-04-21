@@ -1,5 +1,5 @@
 [user]
-	name = jonogould
+	name = Jono Gould
 	email = redacted@example.com
 [alias]
 	st = status
@@ -67,3 +67,12 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[http]
+	cookiefile = ***REMOVED***
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
