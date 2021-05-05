@@ -1,3 +1,0 @@
-csp() {
-  cloud_sql_proxy -instances=$1=tcp:$2
-}

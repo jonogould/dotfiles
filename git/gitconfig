@@ -1,6 +1,10 @@
 [user]
+	email = jono.gould@gmail.com
 	name = Jono Gould
-	email = redacted@example.com
+
+[includeIf "gitdir:~/src/github.com/gdcorp-im/"]
+	path = ~/.gitconfig-godaddy
+
 [alias]
 	st = status
 	co = checkout
