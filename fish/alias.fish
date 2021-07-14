@@ -1,11 +1,11 @@
 # custom
 alias _="sudo"
 alias c="cd"
-alias cw="cd ~/Development"
+alias cw="cd ~/Developer"
 
 # over
-alias oc="cd ~/Development/overhq/over-core-api; GOOGLE_APPLICATION_CREDENTIALS=/Users/jono/.config/gcloud/application_default_credentials.json DB_MIGRATION_AUTO=true ./gradlew bootRun"
-alias og="cd ~/Development/overhq/over-api-gateway; ./gradlew bootRun"
+alias oc="cd ~/Developer/overhq/over-core-api; GOOGLE_APPLICATION_CREDENTIALS=/Users/jono/.config/gcloud/application_default_credentials.json DB_MIGRATION_AUTO=true ./gradlew bootRun"
+alias og="cd ~/Developer/overhq/over-api-gateway; ./gradlew bootRun"
 
 alias gc-dev="gcloud container clusters get-credentials over-api-dev-2 --zone us-east1-d --project over-services-dev"
 alias gc-staging="gcloud container clusters get-credentials over-api-staging-3 --zone us-east1-d --project over-services"

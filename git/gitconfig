@@ -1,9 +1,6 @@
 [user]
-	email = jono.gould@gmail.com
+	email = redacted@example.com
 	name = Jono Gould
-
-[includeIf "gitdir:~/src/github.com/gdcorp-im/"]
-	path = ~/.gitconfig-godaddy
 
 [alias]
 	st = status
@@ -80,3 +77,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[pull]
+	ff = only
