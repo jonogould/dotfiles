@@ -27,7 +27,7 @@ sudo ./fonts/install.sh
 
 ```sh
 curl -L http://get.oh-my.fish | fish
-omf install bobthefish sublime rbenv osx grc brew ssh ssh-term-helper z
+omf install bobthefish sublime osx grc brew ssh ssh-term-helper z nvm
 ```
 
 ## configs

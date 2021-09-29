@@ -2,6 +2,15 @@
 	email = redacted@example.com
 	name = Jono Gould
 
+[includeIf "gitdir:~/src/github.com/gdcorp-im/"]
+	path = ~/.gitconfig-godaddy
+
+[includeIf "gitdir:~/src/github.com/gdcorp-mobile/"]
+	path = ~/.gitconfig-godaddy
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/ 
+
 [alias]
 	st = status
 	co = checkout
@@ -9,13 +18,6 @@
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 
 	diffh = "!f() { git diff \"$@\" | ~/.dotfiles/git/contrib/diff-highlight; }; f"
-
-	# Divergence (commits we added and commits remote added)
-	div = divergence
-
-	# Goodness (summary of diff lines added/removed/total)
-	gn = goodness
-	gnc = goodness --cached
 
 	# Fancy logging.
 	#   h = head
@@ -26,7 +28,6 @@
 	#   la = all commits, all reachable refs
 	head = !git l -1
 	h = !git head
-	hp = "!source ~/.githelpers && show_git_head"
 	r = !git l -30
 	ra = !git r --all
 	l = "!source ~/.dotfiles/git/bin/githelpers && pretty_git_log"
@@ -70,8 +71,6 @@
 	smudge = git-media-smudge %f
 [http]
 	cookiefile = ***REMOVED***
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
