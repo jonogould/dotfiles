@@ -1,0 +1,4 @@
+function kt() {
+  git diff --name-only HEAD origin/$(git rev-parse --abbrev-ref HEAD) | grep '\.kt[s"]\?$' | xargs ktlint --relative .
+  if [ $? -ne 0 ]; then exit 1; fi
+}

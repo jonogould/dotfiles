@@ -2,16 +2,22 @@
 
 ## install
 
-### fish
+### homebrew
+
+[homebrew](https://brew.sh)
 
 ```sh
 brew update
 brew install fish grc z python3
-sudo echo '/usr/local/bin/fish' >> /etc/shells
-chsh -s /usr/local/bin/fish
+
+# install fonts
+pip install --user powerline-status
+git clone https://github.com/powerline/fonts.git
+sudo ./fonts/install.sh
 ```
 
 ### tools
+
 ```sh
 # ~/.tools
 mkdir -p ~/.tools
@@ -21,6 +27,19 @@ cd ~/.tools
 pip install --user powerline-status
 git clone https://github.com/powerline/fonts.git
 sudo ./fonts/install.sh
+```
+
+### oh-my-zsh
+
+```sh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+### fish
+
+```sh
+sudo echo '/usr/local/bin/fish' >> /etc/shells
+chsh -s /usr/local/bin/fish
 ```
 
 ### oh-my-fish
@@ -39,6 +58,7 @@ cd ~
 git clone git@github.com:jonogould/dotfiles.git .dotfiles
 cd ~/.dotfiles
 
+ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/.dotfiles/fish/config.fish ~/.config/fish/config.fish
 
 ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
