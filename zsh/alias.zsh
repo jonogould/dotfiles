@@ -1,11 +1,11 @@
 # custom
 alias _="sudo"
 alias c="cd"
-alias cw="cd ~/Developer"
+alias cw="cd ~/GD_Dev"
 
 # over
-alias oc="cd ~/Developer/overhq/over-core-api; GOOGLE_APPLICATION_CREDENTIALS=/Users/jono/.config/gcloud/application_default_credentials.json DB_MIGRATION_AUTO=true ./gradlew bootRun"
-alias og="cd ~/Developer/overhq/over-api-gateway; ./gradlew bootRun"
+alias oc="cd ~/GD_Dev/overhq/over-core-api; GOOGLE_APPLICATION_CREDENTIALS=/Users/jono/.config/gcloud/application_default_credentials.json DB_MIGRATION_AUTO=true ./gradlew bootRun"
+alias og="cd ~/GD_Dev/overhq/over-api-gateway; ./gradlew bootRun"
 
 alias gc-dev="gcloud container clusters get-credentials over-api-dev-2 --zone us-east1-d --project over-services-dev"
 alias gc-staging="gcloud container clusters get-credentials over-api-staging-3 --zone us-east1-d --project over-services"
@@ -36,7 +36,7 @@ alias gc="git commit -m"
 alias gp='git pull'
 alias gca='git commit -am'
 alias gco='git checkout'
-alias gcm='git checkout master'
+alias gcm='git checkout main'
 alias gba='git branch -a'
 alias gbd='git branch -d'
 alias gps='git push'

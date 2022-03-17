@@ -18,6 +18,7 @@ export DOTFILES=$HOME/.dotfiles
 export CODE=~$HOME/Developer
 export TOOLS=$HOME/.tools
 export NODE_PATH="/usr/local/lib/node_modules"
+export NVM_DIR=~/.nvm
 
 # gcloud
 source /Users/jono/.tools/google-cloud-sdk/completion.zsh.inc
@@ -43,9 +44,12 @@ path+=($DOTFILES/git/bin)
 # tools
 path+=($TOOLS)
 
+# nvm
+source $(brew --prefix nvm)/nvm.sh
+
 # go
 export GO111MODULE=on
-export GOPRIVATE=github.com/overhq
+export GOPRIVATE=github.com/overhq/*,github.com/gdcorp-im/*,github.com/gdcorp-golang/*
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH=$PATH:$GOPATH/bin
@@ -54,6 +58,7 @@ export MYSQL_ENV_MYSQL_ROOT_PASSWORD=root
 
 # Import alias
 source $DOTFILES/zsh/alias.zsh
+source $DOTFILES/zsh/functions/*
 
 export PATH # Add RVM to PATH for scripting
 
