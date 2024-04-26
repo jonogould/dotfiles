@@ -2,14 +2,14 @@
 	email = redacted@example.com
 	name = Jono Gould
 
-[includeIf "gitdir:~/src/github.com/gdcorp-im/"]
-	path = ~/.gitconfig-godaddy
+[includeIf "gitdir:~/GD_Dev/**/.git"]
+	path = ~/.gitconfig.work
 
-[includeIf "gitdir:~/src/github.com/gdcorp-mobile/"]
-	path = ~/.gitconfig-godaddy
+; [includeIf "gitdir:~/Developer/**/.git"]
+; 	path = ~/.gitconfig.home
 
-[url "git@github.com:"]
-  insteadOf = https://github.com/ 
+; [url "git@github.com:"]
+; 	insteadOf = https://github.com/ 
 
 [alias]
 	st = status
@@ -42,20 +42,20 @@
 	interactive = auto
 	ui = auto
 [color "branch"]
-  current = green bold
-  local = green
-  remote = red bold
+	current = green bold
+	local = green
+	remote = red bold
 [color "diff"]
-  meta = yellow
-  frag = magenta
-  old = red
-  new = green
+	meta = yellow
+	frag = magenta
+	old = red
+	new = green
 [color "status"]
-  added = green bold
-  changed = yellow bold
-  untracked = red
+	added = green bold
+	changed = yellow bold
+	untracked = red
 [color "sh"]
-  branch = yellow
+	branch = yellow
 [difftool]
 	prompt = false
 [diff]
@@ -78,3 +78,9 @@
 	required = true
 [pull]
 	ff = only
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

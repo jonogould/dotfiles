@@ -20,10 +20,6 @@ export TOOLS=$HOME/.tools
 export NODE_PATH="/usr/local/lib/node_modules"
 export NVM_DIR=~/.nvm
 
-# gcloud
-source /Users/jono/.tools/google-cloud-sdk/completion.zsh.inc
-source /Users/jono/.tools/google-cloud-sdk/path.zsh.inc
-
 # Plugins ~/.oh-my-zsh/plugins/*
 plugins=(git npm z)
 

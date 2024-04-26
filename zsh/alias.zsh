@@ -3,19 +3,6 @@ alias _="sudo"
 alias c="cd"
 alias cw="cd ~/GD_Dev"
 
-# over
-alias oc="cd ~/GD_Dev/overhq/over-core-api; GOOGLE_APPLICATION_CREDENTIALS=/Users/jono/.config/gcloud/application_default_credentials.json DB_MIGRATION_AUTO=true ./gradlew bootRun"
-alias og="cd ~/GD_Dev/overhq/over-api-gateway; ./gradlew bootRun"
-
-alias gc-dev="gcloud container clusters get-credentials over-api-dev-2 --zone us-east1-d --project over-services-dev"
-alias gc-staging="gcloud container clusters get-credentials over-api-staging-3 --zone us-east1-d --project over-services"
-alias gc-prod="gcloud container clusters get-credentials over-core-circle --zone us-east1-d --project over-services-prod"
-
-alias csp-dev="csp over-services-dev:us-east1:over-core-dev 3309"
-alias csp-staging="csp over-services:us-east1:over-core-staging-2 3310"
-alias csp-prod="csp over-services-prod:us-east1:over-core-2 3311"
-alias csp-prod-aux="csp over-services-prod:us-east1:over-services-aux 3312"
-
 # dotfiles
 alias c_dot="code ~/.dotfiles/"
 
@@ -58,3 +45,5 @@ alias :q='exit'
 
 # Tree
 alias tr='tree -d --prune -L 3'
+
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
