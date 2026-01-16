@@ -48,3 +48,5 @@ alias :q='exit'
 alias tr='tree -d --prune -L 3'
 
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
+alias dcu='docker compose up'
