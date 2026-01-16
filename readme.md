@@ -10,12 +10,6 @@
 brew update
 brew install fish grc z python3
 
-# install fonts
-pip install --user powerline-status
-git clone https://github.com/powerline/fonts.git
-sudo ./fonts/install.sh
-```
-
 ### tools
 
 ```sh

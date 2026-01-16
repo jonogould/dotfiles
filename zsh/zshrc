@@ -1,16 +1,17 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+
+    # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    # fi
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/.dotfiles/zsh
 
 export DISABLE_AUTO_UPDATE="true"
-export DISABLE_AUTO_TITLE="true"
+# export DISABLE_AUTO_TITLE="true"
 export EDITOR=nano
 
 # Custom Stuff
@@ -21,27 +22,29 @@ export NODE_PATH="/usr/local/lib/node_modules"
 export NVM_DIR=~/.nvm
 
 # Plugins ~/.oh-my-zsh/plugins/*
-plugins=(git npm z)
+#plugins=(git npm z)
+
+# Import alias
+source $DOTFILES/zsh/alias.zsh
+# source $DOTFILES/zsh/functions/*
+
+# Load custom theme (standalone, no oh-my-zsh required)
+source $DOTFILES/zsh/themes/my-theme/my-theme.zsh-theme
 
 # Theme ~/.oh-my-zsh/themes/
-#  ZSH_THEME="my-theme/my-theme"
- ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="my-theme/my-theme"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
-# homebrew
-path+=('/usr/local/bin:/usr/local/sbin')
-path+=('/opt/homebrew/bin')
+# source $ZSH/oh-my-zsh.sh
 
 # git
 path+=($DOTFILES/git/bin)
 
 # tools
 path+=($TOOLS)
-
-# nvm
-source $(brew --prefix nvm)/nvm.sh
+path+=('/usr/local/bin')
+path+=('/opt/homebrew/bin')
 
 # go
 export GO111MODULE=on
@@ -49,14 +52,30 @@ export GOPRIVATE=github.com/overhq/*,github.com/gdcorp-im/*,github.com/gdcorp-go
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH=$PATH:$GOPATH/bin
+
+# mysql
 export MYSQL_ENV_MYSQL_ROOT_USERNAME=root
 export MYSQL_ENV_MYSQL_ROOT_PASSWORD=root
 
-# Import alias
-source $DOTFILES/zsh/alias.zsh
-source $DOTFILES/zsh/functions/*
-
-export PATH # Add RVM to PATH for scripting
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+
+source $DOTFILES/zsh/ai.zsh
+
+source ~/.antidote/antidote.zsh
+antidote load
+
+# Created by `pipx` on 2025-07-14 08:52:49
+export PATH="$PATH:/Users/jgould/.local/bin"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Added by LM Studio CLI (lms)
+path+=('/Users/jgould/.lmstudio/bin')
+path+=('/Users/jgould/.claude/local/claude/bin')
+# End of LM Studio CLI section
+
+# Added by Antigravity
+export PATH="/Users/jgould/.antigravity/antigravity/bin:$PATH"

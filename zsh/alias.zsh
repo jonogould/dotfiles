@@ -2,9 +2,10 @@
 alias _="sudo"
 alias c="cd"
 alias cw="cd ~/GD_Dev"
+alias cios="cd ~/GD_Dev/gdcorp-mobile/Over-iOS"
 
 # dotfiles
-alias c_dot="code ~/.dotfiles/"
+alias c_dot="cursor ~/.dotfiles/"
 
 # ls
 alias l="ls -lhG"

@@ -1,9 +1,10 @@
+[filter "lfs"]
 [user]
-	email = redacted@example.com
 	name = Jono Gould
-
-[includeIf "gitdir:~/GD_Dev/**/.git"]
-	path = ~/.gitconfig.work
+	email = redacted@example.com #redacted@example.com
+	
+# [includeIf "gitdir:~/GD_Dev/**/.git"]
+# 	path = ~/.gitconfig.work
 
 ; [includeIf "gitdir:~/Developer/**/.git"]
 ; 	path = ~/.gitconfig.home
