@@ -71,3 +71,8 @@ export MYSQL_ENV_MYSQL_ROOT_PASSWORD=root
 
 # Terminal integrations (conditional loading)
 [[ "$TERM_PROGRAM" == "kiro" ]] && [[ -f "$(kiro --locate-shell-integration-path zsh 2>/dev/null)" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/jgould/.lmstudio/bin"
+# End of LM Studio CLI section
+

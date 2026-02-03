@@ -8,7 +8,7 @@
 
 ```sh
 brew update
-brew install fish grc z python3
+brew install grc z python3 uv
 
 ### tools
 
