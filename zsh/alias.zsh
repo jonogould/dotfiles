@@ -56,3 +56,4 @@ alias dcu='docker compose up'
 
 alias hq='cd ~/GD_Dev/gdcorp-im/cxp-mobile-hq'
 alias hqc='cd ~/GD_Dev/gdcorp-im/cxp-mobile-hq; claude'
+alias zios='cd ~/GD_Dev/gdcorp-im/cxp-mobile-hq/_repos/Over-iOS'
