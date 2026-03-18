@@ -3,6 +3,7 @@ alias _="sudo"
 alias c="cd"
 alias cw="cd ~/GD_Dev"
 alias cios="cd ~/GD_Dev/gdcorp-mobile/Over-iOS"
+alias ciosc="cd ~/GD_Dev/gdcorp-mobile/Over-iOS; claude"
 
 # dotfiles
 alias c_dot="cursor ~/.dotfiles/"
@@ -50,3 +51,8 @@ alias tr='tree -d --prune -L 3'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 
 alias dcu='docker compose up'
+
+# Maestro
+
+alias hq='cd ~/GD_Dev/gdcorp-im/cxp-mobile-hq'
+alias hqc='cd ~/GD_Dev/gdcorp-im/cxp-mobile-hq; claude'

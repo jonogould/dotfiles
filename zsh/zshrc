@@ -69,6 +69,21 @@ export MYSQL_ENV_MYSQL_ROOT_PASSWORD=root
 # The .zsh_plugins.zsh file is pre-generated and just sources plugins directly
 [[ -f ~/.zsh_plugins.zsh ]] && source ~/.zsh_plugins.zsh
 
+# Completion menu - highlight selected item while navigating with arrow keys
+zstyle ':completion:*' menu select
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=1;30;48;5;73"
+
+# Tab: accept autosuggestion if one is showing, otherwise do normal completion
+_tab_or_complete() {
+    if [[ -n "$POSTDISPLAY" ]]; then
+        zle autosuggest-accept
+    else
+        zle expand-or-complete
+    fi
+}
+zle -N _tab_or_complete
+bindkey '^I' _tab_or_complete
+
 # Terminal integrations (conditional loading)
 [[ "$TERM_PROGRAM" == "kiro" ]] && [[ -f "$(kiro --locate-shell-integration-path zsh 2>/dev/null)" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
@@ -76,3 +91,7 @@ export MYSQL_ENV_MYSQL_ROOT_PASSWORD=root
 export PATH="$PATH:/Users/jgould/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
