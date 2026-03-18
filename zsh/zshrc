@@ -71,6 +71,7 @@ export MYSQL_ENV_MYSQL_ROOT_PASSWORD=root
 
 # Completion menu - highlight selected item while navigating with arrow keys
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=1;30;48;5;73"
 
 # Tab: accept autosuggestion if one is showing, otherwise do normal completion
