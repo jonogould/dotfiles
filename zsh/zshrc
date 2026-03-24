@@ -33,6 +33,7 @@ typeset -U path
 path=(
     $DOTFILES/git/bin
     $TOOLS
+    $HOME/.antidote
     $HOME/go/bin
     $HOME/.local/bin
     $HOME/.lmstudio/bin
