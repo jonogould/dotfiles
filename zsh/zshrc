@@ -37,7 +37,7 @@ path=(
     $HOME/go/bin
     $HOME/.local/bin
     $HOME/.lmstudio/bin
-    $HOME/.claude/local/claude/bin
+    # $HOME/.claude/local/claude/bin
     $HOME/.antigravity/antigravity/bin
     /opt/homebrew/bin
     /usr/local/bin
@@ -46,6 +46,11 @@ path=(
 
 # Import alias (with file check)
 [[ -f $DOTFILES/zsh/alias.zsh ]] && source $DOTFILES/zsh/alias.zsh
+
+# Load all custom functions
+for func_file in $DOTFILES/zsh/functions/*; do
+    [[ -f "$func_file" ]] && source "$func_file"
+done
 
 # Load custom theme (with file check)
 [[ -f $DOTFILES/zsh/themes/my-theme/my-theme.zsh-theme ]] && source $DOTFILES/zsh/themes/my-theme/my-theme.zsh-theme
@@ -63,6 +68,9 @@ fi
 export MYSQL_ENV_MYSQL_ROOT_USERNAME=root
 export MYSQL_ENV_MYSQL_ROOT_PASSWORD=root
 
+# Turn it all OFF
+DO_NOT_TRACK=1
+
 # AI integration (lazy loaded - only sources when file exists)
 [[ -f $DOTFILES/zsh/ai.zsh ]] && source $DOTFILES/zsh/ai.zsh
 
@@ -70,30 +78,26 @@ export MYSQL_ENV_MYSQL_ROOT_PASSWORD=root
 # The .zsh_plugins.zsh file is pre-generated and just sources plugins directly
 [[ -f ~/.zsh_plugins.zsh ]] && source ~/.zsh_plugins.zsh
 
+# ↑/↓ filter history by what you've typed (e.g. "ssh " then ↑)
+[[ -f $DOTFILES/zsh/history.zsh ]] && source $DOTFILES/zsh/history.zsh
+
 # Completion menu - highlight selected item while navigating with arrow keys
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=1;30;48;5;73"
 
 # Tab: accept autosuggestion if one is showing, otherwise do normal completion
-_tab_or_complete() {
-    if [[ -n "$POSTDISPLAY" ]]; then
-        zle autosuggest-accept
-    else
-        zle expand-or-complete
-    fi
-}
 zle -N _tab_or_complete
 bindkey '^I' _tab_or_complete
-
-# Terminal integrations (conditional loading)
-[[ "$TERM_PROGRAM" == "kiro" ]] && [[ -f "$(kiro --locate-shell-integration-path zsh 2>/dev/null)" ]] && . "$(kiro --locate-shell-integration-path zsh)"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/jgould/.lmstudio/bin"
-# End of LM Studio CLI section
 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$PATH:$HOME/.lmstudio/bin"
+export PATH="$PATH:$HOME/.antigravity/antigravity/bin"
+
+# BEGIN gocode-dev
+export PATH='/Users/jgould/.config/gocode-dev/shims':$PATH
+# END gocode-dev

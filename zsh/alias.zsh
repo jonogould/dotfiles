@@ -7,6 +7,7 @@ alias ciosc="cd ~/GD_Dev/gdcorp-mobile/Over-iOS; claude"
 
 # dotfiles
 alias c_dot="cursor ~/.dotfiles/"
+alias reload="source ~/.zshrc && echo 'zshrc reloaded'"
 
 # ls
 alias l="ls -lhG"
@@ -55,6 +56,6 @@ alias dcu='docker compose up'
 # Maestro
 
 alias hq='cd ~/GD_Dev/gdcorp-im/cxp-mobile-hq'
-alias hqc='cd ~/GD_Dev/gdcorp-im/cxp-mobile-hq; claude'
+alias cqc='cd ~/GD_Dev/gdcorp-im/gd-maestro; claude --add-dir cxp-mobile-hq --dangerously-skip-permissions'
 alias zios='cd ~/GD_Dev/gdcorp-im/cxp-mobile-hq/_repos/Over-iOS'
 alias hqios='cd ~/GD_Dev/gdcorp-im/cxp-mobile-hq/_repos/Over-iOS'
