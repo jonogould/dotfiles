@@ -24,7 +24,6 @@ export DOTFILES=$HOME/.dotfiles
 export CODE=$HOME/Developer
 export TOOLS=$HOME/.tools
 export NODE_PATH="/usr/local/lib/node_modules"
-export NVM_DIR=~/.nvm
 
 # Deduplicate PATH automatically (makes PATH handling faster)
 typeset -U path
@@ -47,9 +46,9 @@ path=(
 # Import alias (with file check)
 [[ -f $DOTFILES/zsh/alias.zsh ]] && source $DOTFILES/zsh/alias.zsh
 
-# Load all custom functions
+# Load all custom functions (history.zsh is sourced separately after plugins)
 for func_file in $DOTFILES/zsh/functions/*; do
-    [[ -f "$func_file" ]] && source "$func_file"
+    [[ -f "$func_file" && "${func_file:t}" != "history.zsh" ]] && source "$func_file"
 done
 
 # Load custom theme (with file check)
@@ -79,7 +78,7 @@ DO_NOT_TRACK=1
 [[ -f ~/.zsh_plugins.zsh ]] && source ~/.zsh_plugins.zsh
 
 # ↑/↓ filter history by what you've typed (e.g. "ssh " then ↑)
-[[ -f $DOTFILES/zsh/history.zsh ]] && source $DOTFILES/zsh/history.zsh
+[[ -f $DOTFILES/zsh/functions/history.zsh ]] && source $DOTFILES/zsh/functions/history.zsh
 
 # Completion menu - highlight selected item while navigating with arrow keys
 zstyle ':completion:*' menu select
@@ -91,12 +90,18 @@ zle -N _tab_or_complete
 bindkey '^I' _tab_or_complete
 
 
+# NVM - lazy loaded for faster shell startup
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+_nvm_lazy_load() {
+    unset -f nvm node npm npx corepack 2>/dev/null
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+for cmd in nvm node npm npx corepack; do
+    eval "${cmd}() { _nvm_lazy_load; ${cmd} \"\$@\" }"
+done
+unset cmd
 
-export PATH="$PATH:$HOME/.lmstudio/bin"
-export PATH="$PATH:$HOME/.antigravity/antigravity/bin"
 
 # BEGIN gocode-dev
 export PATH='/Users/jgould/.config/gocode-dev/shims':$PATH
