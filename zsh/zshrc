@@ -25,10 +25,21 @@ export CODE=$HOME/Developer
 export TOOLS=$HOME/.tools
 export NODE_PATH="/usr/local/lib/node_modules"
 
+# Homebrew - detect prefix dynamically across macOS (arm/intel) and Linuxbrew
+# so shellenv sets up PATH/MANPATH/etc. without a hardcoded path.
+for _brew_candidate in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+    if [[ -x "$_brew_candidate" ]]; then
+        eval "$("$_brew_candidate" shellenv)"
+        break
+    fi
+done
+unset _brew_candidate
+
 # Deduplicate PATH automatically (makes PATH handling faster)
 typeset -U path
 
 # Consolidate all PATH additions in one place for performance
+# (brew bin dirs are added above via shellenv and preserved through $path)
 path=(
     $DOTFILES/git/bin
     $TOOLS
@@ -38,8 +49,6 @@ path=(
     $HOME/.lmstudio/bin
     # $HOME/.claude/local/claude/bin
     $HOME/.antigravity/antigravity/bin
-    /opt/homebrew/bin
-    /usr/local/bin
     $path
 )
 
@@ -56,11 +65,11 @@ done
 
 # go - cached brew prefix for performance
 export GO111MODULE=on
-export GOPRIVATE=github.com/overhq/*,github.com/gdcorp-im/*,github.com/gdcorp-golang/*
+# GOPRIVATE (private org globs) is set in zsh/local.zsh (gitignored).
 export GOPATH=$HOME/go
-# Cache brew prefix to avoid slow brew command on every shell start
-if [[ -z "$GOROOT" ]]; then
-    export GOROOT="/opt/homebrew/opt/go/libexec"
+# Derive GOROOT from the installed go toolchain (portable across macOS/Linux)
+if [[ -z "${GOROOT:-}" ]] && command -v go >/dev/null 2>&1; then
+    export GOROOT="$(go env GOROOT)"
 fi
 
 # mysql
@@ -72,6 +81,10 @@ DO_NOT_TRACK=1
 
 # AI integration (lazy loaded - only sources when file exists)
 [[ -f $DOTFILES/zsh/ai.zsh ]] && source $DOTFILES/zsh/ai.zsh
+
+# Machine/employer-specific overrides (gitignored). Holds private aliases,
+# internal paths, GOPRIVATE orgs, and internal tool shims. See local.zsh.example.
+[[ -f $DOTFILES/zsh/local.zsh ]] && source $DOTFILES/zsh/local.zsh
 
 # Antidote - use static loading for performance (faster than dynamic)
 # The .zsh_plugins.zsh file is pre-generated and just sources plugins directly
@@ -91,11 +104,21 @@ bindkey '^I' _tab_or_complete
 
 
 # NVM - lazy loaded for faster shell startup
+# Homebrew installs nvm.sh under its prefix (NOT in ~/.nvm); git-clone/Linux
+# installs put it in $NVM_DIR. Keep NVM_DIR set either way — Homebrew's nvm
+# still uses it as the data dir. Prefer the brew copy, fall back to $NVM_DIR.
 export NVM_DIR="$HOME/.nvm"
 _nvm_lazy_load() {
     unset -f nvm node npm npx corepack 2>/dev/null
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    local _nvm_prefix
+    _nvm_prefix="$(brew --prefix nvm 2>/dev/null)"
+    if [ -n "$_nvm_prefix" ] && [ -s "$_nvm_prefix/nvm.sh" ]; then
+        \. "$_nvm_prefix/nvm.sh"
+        [ -s "$_nvm_prefix/etc/bash_completion.d/nvm" ] && \. "$_nvm_prefix/etc/bash_completion.d/nvm"
+    else
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    fi
 }
 for cmd in nvm node npm npx corepack; do
     eval "${cmd}() { _nvm_lazy_load; ${cmd} \"\$@\" }"
@@ -103,6 +126,6 @@ done
 unset cmd
 
 
-# BEGIN gocode-dev
-export PATH='/Users/jgould/.config/gocode-dev/shims':$PATH
-# END gocode-dev
+# Added by Antigravity IDE
+# Guarded so it no-ops on machines without the Antigravity IDE installed.
+[[ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ]] && export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"

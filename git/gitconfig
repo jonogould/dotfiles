@@ -1,13 +1,14 @@
 [filter "lfs"]
-[user]
-	name = Jono Gould
-	email = redacted@example.com #redacted@example.com
-	
-# [includeIf "gitdir:~/GD_Dev/**/.git"]
-# 	path = ~/.gitconfig.work
 
-; [includeIf "gitdir:~/Developer/**/.git"]
-; 	path = ~/.gitconfig.home
+# Identity (name/email) is kept OUT of version control. Real values live in
+# git/identity.local, which is gitignored. Copy git/identity.local.example to
+# git/identity.local and fill in your details.
+[include]
+	path = ~/.dotfiles/git/identity.local
+
+# Optional per-directory identity overrides (also gitignored):
+# [includeIf "gitdir:~/work/"]
+# 	path = ~/.dotfiles/git/identity-work.local
 
 ; [url "git@github.com:"]
 ; 	insteadOf = https://github.com/ 
@@ -70,8 +71,6 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
-[http]
-	cookiefile = ***REMOVED***
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

@@ -1,0 +1,6 @@
+# Your Git identity. Copy this file to git/identity.local (gitignored) and edit.
+#   cp git/identity.local.example git/identity.local
+# It is pulled in by git/gitconfig via an [include] directive.
+[user]
+	name = Your Name
+	email = you@example.com

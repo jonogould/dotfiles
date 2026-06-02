@@ -1,10 +1,9 @@
-# This is where any API keys are stored for AI tools
+# API keys AND the private endpoint are stored in .env (gitignored), sourced here.
 [[ -f $DOTFILES/.env ]] && source $DOTFILES/.env
 
-# Claude
-export ANTHROPIC_BASE_URL="https://REDACTED.example"
+# Claude — ANTHROPIC_BASE_URL and GOCODE_API_TOKEN are provided by .env above.
 export ANTHROPIC_AUTH_TOKEN=$GOCODE_API_TOKEN
-export ANTHROPIC_MODEL="sonnet[1m]"
+# export ANTHROPIC_MODEL="claude-opus-4-8[1m]"
 export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1
 export CLAUDE_CODE_DISABLE_AUTO_MEMORY=1
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1

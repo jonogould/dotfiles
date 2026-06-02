@@ -1,0 +1,17 @@
+# Machine/employer-specific shell config. This file is gitignored.
+# Put anything private here: internal paths, work aliases, GOPRIVATE orgs,
+# internal tool shims, etc. Sourced by zsh/zshrc if present.
+#
+#   cp zsh/local.zsh.example zsh/local.zsh
+#
+# Examples:
+#
+# # Private Go module orgs
+# export GOPRIVATE=github.com/your-org/*,github.com/another-org/*
+#
+# # Work navigation
+# alias work="cd ~/path/to/work"
+#
+# # Internal tool shims (guarded so it no-ops when absent)
+# [[ -d "$HOME/.config/some-internal-tool/shims" ]] && \
+#     export PATH="$HOME/.config/some-internal-tool/shims:$PATH"
