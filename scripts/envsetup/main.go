@@ -2,7 +2,7 @@
 //
 // It parses variable names and placeholder defaults from a .env.example
 // template, loads any existing values from the current .env, walks the user
-// through each value in a Bubble Tea wizard (masking secret-looking keys), and
+// through each value in an interactive TUI wizard (masking secret-looking keys), and
 // writes the result back to .env atomically with 0600 permissions.
 //
 // It is invoked by install.sh after the matching prebuilt binary is fetched.
@@ -40,6 +40,27 @@ type envVar struct {
 }
 
 func main() {
+	// Non-interactive provisioning: `envsetup apply <profile.yml>`.
+	// The profile path may also come from $DOTFILES_PROFILE.
+	if args := os.Args[1:]; len(args) >= 1 && args[0] == "apply" {
+		profilePath := ""
+		if len(args) >= 2 {
+			profilePath = args[1]
+		}
+		if profilePath == "" {
+			profilePath = os.Getenv("DOTFILES_PROFILE")
+		}
+		if profilePath == "" {
+			fmt.Fprintln(os.Stderr, "envsetup apply: no profile path provided")
+			os.Exit(1)
+		}
+		if err := runApply(profilePath); err != nil {
+			fmt.Fprintf(os.Stderr, "envsetup apply: %v\n", err)
+			os.Exit(1)
+		}
+		return
+	}
+
 	examplePath, envPath := resolvePaths()
 
 	vars, header, err := parseTemplate(examplePath)
@@ -439,13 +460,7 @@ func resolvePaths() (examplePath, envPath string) {
 		envPath = v
 	}
 
-	base := os.Getenv("DOTFILES")
-	if base == "" {
-		base = os.Getenv("DOTFILES_DIR")
-	}
-	if base == "" {
-		base = "."
-	}
+	base := baseDir()
 	if examplePath == "" {
 		examplePath = filepath.Join(base, ".env.example")
 	}
@@ -453,6 +468,18 @@ func resolvePaths() (examplePath, envPath string) {
 		envPath = filepath.Join(base, ".env")
 	}
 	return examplePath, envPath
+}
+
+// baseDir resolves the dotfiles repo root from $DOTFILES / $DOTFILES_DIR,
+// falling back to the current directory.
+func baseDir() string {
+	if v := os.Getenv("DOTFILES"); v != "" {
+		return v
+	}
+	if v := os.Getenv("DOTFILES_DIR"); v != "" {
+		return v
+	}
+	return "."
 }
 
 // parseTemplate reads .env.example, returning the ordered variables and the

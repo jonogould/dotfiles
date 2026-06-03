@@ -13,7 +13,6 @@ from zero to a fully wired Zsh in a single paste.*
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Zsh](https://img.shields.io/badge/Zsh-1A2C34?style=for-the-badge&logo=gnubash&logoColor=4EAA25)
 ![Go](https://img.shields.io/badge/Go_1.25-00ADD8?style=for-the-badge&logo=go&logoColor=white)
-![Bubble Tea](https://img.shields.io/badge/Bubble%20Tea-FF75B7?style=for-the-badge&logo=charm&logoColor=white)
 ![Git LFS](https://img.shields.io/badge/Git%20LFS-F64935?style=for-the-badge&logo=git&logoColor=white)
 
 </div>
@@ -41,7 +40,8 @@ SSH keys required**), re-execs itself from there, and is **100% safe to re-run**
 | 🖥️ **Cross-OS** | One installer, identical result on macOS & Linux |
 | 🔁 **Idempotent** | Re-run anytime — it heals drift and never clobbers your secrets |
 | 🧳 **Auto-backup** | Existing files are stashed in a timestamped folder before linking |
-| 🎨 **Gorgeous `.env` wizard** | A Bubble Tea TUI walks you through your secrets |
+| 🎨 **Gorgeous `.env` wizard** | A polished Go TUI walks you through your secrets |
+| 🧬 **Profile provisioning** | Rehydrate private details from one YAML file, zero prompts |
 | 🪶 **Featherweight clone** | Git LFS pulls *only* the binary your CPU needs |
 | 🍓 **Raspberry-Pi friendly** | No bloated downloads, no Go required at install |
 
@@ -97,7 +97,7 @@ flowchart LR
 API keys for AI tooling are sourced by [`zsh/ai.zsh`](zsh/ai.zsh) from
 `~/.dotfiles/.env` — which is **🙈 gitignored and never committed.**
 
-When run interactively, the installer launches a prebuilt **Bubble Tea TUI**
+When run interactively, the installer launches a prebuilt **Go TUI**
 ([`scripts/envsetup`](scripts/envsetup)) that walks you through each variable:
 
 - ⌨️ Pre-fills the existing/template value — just hit **Enter** to keep it.
@@ -115,16 +115,59 @@ cp ~/.dotfiles/.env.example ~/.dotfiles/.env
 $EDITOR ~/.dotfiles/.env
 ```
 
-🔑 Keys: `GOCODE_API_TOKEN` · `OPENAI_API_KEY` · `BITRISE_PAT`
+🔑 Keys: `GOCODE_API_TOKEN` · `OPENAI_API_KEY`
+
+---
+
+## 🧬 Reviving private details (profiles)
+
+Personal & employer-specific details are kept **out of version control** —
+your Git identity, private endpoints, secrets, `GOPRIVATE` orgs, work aliases
+and tool shims live in **gitignored local files** (`git/identity.local`,
+`.env`, `zsh/local.zsh`). To rehydrate them on a fresh machine in one shot,
+keep a single **private YAML profile** (in a password manager / secure note)
+and point the installer at it:
+
+```sh
+DOTFILES_PROFILE=~/secure/dotfiles.profile.yml \
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/master/install.sh)"
+```
+
+When `DOTFILES_PROFILE` is set, the installer provisions **non-interactively**
+(the `.env` wizard is skipped) by regenerating each local file from the
+profile. See [`dotfiles.profile.example`](dotfiles.profile.example) for the
+full schema:
+
+```yaml
+git:                       # -> git/identity.local
+  name: Your Name
+  email: you@example.com
+env:                       # -> .env (overlaid onto .env.example, 0600)
+  ANTHROPIC_BASE_URL: ""
+  GOCODE_API_TOKEN: ""
+zsh:                       # -> zsh/local.zsh
+  GOPRIVATE: "github.com/your-org/*"
+  extra: |
+    alias work="cd ~/dev/work"
+```
+
+- 🔑 The profile is the **source of truth** — sections it provides are
+  (re)written; sections it omits are left untouched.
+- 🪞 `.env` keeps the template's order and references (e.g. `OPENAI_API_KEY`
+  mirrors `GOCODE_API_TOKEN`); extra keys are appended.
+- 🛡️ Real profiles are **gitignored** (`dotfiles.profile*`) — only the
+  `.example` template is tracked.
+
+> [!IMPORTANT]
+> Profile mode reuses the prebuilt LFS helper, so it needs `git-lfs` and the
+> matching binary. If either is missing it warns and falls back to the
+> interactive flow.
 
 ---
 
 ## 🎨 The `.env` wizard (`scripts/envsetup`)
 
-The interactive wizard is a tiny Go program built with the **v2**
-[Charm](https://charm.land) stack — [Bubble Tea](https://github.com/charmbracelet/bubbletea),
-[Bubbles](https://github.com/charmbracelet/bubbles), and
-[Lip Gloss](https://github.com/charmbracelet/lipgloss).
+The interactive wizard is a tiny, dependency-light Go program.
 
 Prebuilt binaries for `darwin` / `linux` × `amd64` / `arm64` live under
 [`scripts/envsetup/bin/`](scripts/envsetup/bin) and are tracked with **Git LFS**:

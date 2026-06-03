@@ -1,0 +1,21 @@
+# dotfiles private profile — PRIVATE. Never commit your real profile.
+# Revives gitignored local details on a fresh machine, non-interactively:
+#
+#   DOTFILES_PROFILE=~/secure/dotfiles.profile.yml \
+#     bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/master/install.sh)"
+#
+# The profile is the source of truth: sections it provides are (re)written;
+# omitted sections are left untouched.
+
+git:                       # -> git/identity.local
+  name: Your Name
+  email: you@example.com
+
+env:                       # -> .env (0600). Overlaid onto .env.example;
+  ANTHROPIC_BASE_URL: ""   # omitted keys keep template defaults, so
+  GOCODE_API_TOKEN: ""     # OPENAI_API_KEY mirrors GOCODE_API_TOKEN.
+
+zsh:                       # -> zsh/local.zsh
+  GOPRIVATE: "github.com/your-org/*"
+  extra: |
+    alias work="cd ~/path/to/work"

@@ -11,6 +11,11 @@
 #   3. Symlinks config files into $HOME, backing up any existing real files first.
 #   4. Post-link setup: antidote, nvm, .env, zsh recompile, default shell.
 #
+# Optional non-interactive provisioning:
+#   DOTFILES_PROFILE=/path/to/dotfiles.profile.yml bash -c "$(curl -fsSL …)"
+# revives personal/employer-specific details (git identity, secrets, GOPRIVATE,
+# aliases) from a private YAML profile. See dotfiles.profile.example.
+#
 set -euo pipefail
 
 # ---------------------------------------------------------------------------
@@ -265,9 +270,15 @@ setup_nvm() {
 }
 setup_nvm
 
-# 4c. .env interactive setup
+# 4c. .env setup
 #
-# On an explicit "yes", a prebuilt Bubble Tea TUI (scripts/envsetup/bin/
+# Non-interactive fast path: if $DOTFILES_PROFILE points at a readable YAML
+# profile, the prebuilt helper's `apply` mode regenerates all gitignored local
+# files (git/identity.local, .env, zsh/local.zsh) from it and skips every
+# prompt. See dotfiles.profile.example for the schema. Otherwise we fall back to
+# the interactive walkthrough below.
+#
+# On an explicit "yes", a prebuilt Go TUI (scripts/envsetup/bin/
 # envsetup-<os>-<arch>, stored in Git LFS) walks through each variable in
 # .env.example and prompts for a value (offering the current/.env value or the
 # template placeholder as the default, masking secret-looking keys). The binary
@@ -315,6 +326,56 @@ envsetup_needs_pull() {
     head -c 100 "$f" 2>/dev/null | grep -q "git-lfs.github.com"
 }
 
+# Fetch (if needed) and print the path to this host's prebuilt envsetup binary.
+# Only the matching binary is pulled from LFS. All status output goes to stderr
+# so the path is the sole stdout; returns non-zero if it can't be made ready.
+ensure_envsetup_bin() {
+    local platform rel bin
+    if ! platform="$(envsetup_platform)"; then
+        warn "Unsupported platform $(uname -s)/$(uname -m)"
+        return 1
+    fi
+    rel="scripts/envsetup/bin/envsetup-$platform"
+    bin="$DOTFILES_DIR/$rel"
+
+    # Fetch ONLY this host's binary from LFS if it's missing or still a pointer.
+    if envsetup_needs_pull "$bin"; then
+        if git lfs version >/dev/null 2>&1; then
+            info "Fetching env helper binary via Git LFS ($rel)" >&2
+            git -C "$DOTFILES_DIR" lfs pull --include="$rel" >/dev/null 2>&1 \
+                || warn "git lfs pull failed for $rel"
+        else
+            warn "git-lfs unavailable; cannot fetch the env helper binary"
+        fi
+    fi
+
+    if envsetup_needs_pull "$bin"; then
+        warn "Env helper binary unavailable ($rel)"
+        return 1
+    fi
+
+    chmod +x "$bin" 2>/dev/null || true
+    printf '%s' "$bin"
+}
+
+# Profile-driven, non-interactive provisioning. Regenerates the gitignored
+# local files (git/identity.local, .env, zsh/local.zsh) from a private YAML
+# profile via the prebuilt helper. Returns non-zero on any failure so the
+# caller can fall back to the interactive flow.
+apply_profile() {
+    local profile="$1" bin
+    if ! bin="$(ensure_envsetup_bin)"; then
+        return 1
+    fi
+    info "Applying profile (non-interactive): $profile"
+    if DOTFILES="$DOTFILES_DIR" "$bin" apply "$profile"; then
+        ok "Provisioned local files from profile"
+        return 0
+    fi
+    warn "Profile apply failed"
+    return 1
+}
+
 setup_env() {
     local example="$DOTFILES_DIR/.env.example"
     local envfile="$DOTFILES_DIR/.env"
@@ -322,6 +383,20 @@ setup_env() {
     if [[ ! -f "$example" ]]; then
         warn "No .env.example found; skipping .env creation"
         return 0
+    fi
+
+    # Profile-driven provisioning takes precedence: when $DOTFILES_PROFILE points
+    # at a readable YAML file, regenerate all local files from it non-interactively
+    # (no prompts, no wizard). Falls through to the interactive flow on failure.
+    if [[ -n "${DOTFILES_PROFILE:-}" ]]; then
+        if [[ -r "$DOTFILES_PROFILE" ]]; then
+            if apply_profile "$DOTFILES_PROFILE"; then
+                return 0
+            fi
+            warn "Falling back from profile to interactive/template setup"
+        else
+            warn "DOTFILES_PROFILE set but not readable: $DOTFILES_PROFILE"
+        fi
     fi
 
     # Ask once whether to run the interactive walkthrough at all (default No).
@@ -346,36 +421,15 @@ setup_env() {
             ;;
     esac
 
-    # Select the prebuilt binary for this platform.
-    local platform
-    if ! platform="$(envsetup_platform)"; then
-        warn "Unsupported platform $(uname -s)/$(uname -m); falling back to template copy"
-        copy_env_template "$example" "$envfile"
-        return 0
-    fi
-    local rel="scripts/envsetup/bin/envsetup-$platform"
-    local bin="$DOTFILES_DIR/$rel"
-
-    # Fetch ONLY this host's binary from LFS if it's missing or still a pointer.
-    if envsetup_needs_pull "$bin"; then
-        if git lfs version >/dev/null 2>&1; then
-            info "Fetching env helper binary via Git LFS ($rel)"
-            git -C "$DOTFILES_DIR" lfs pull --include="$rel" >/dev/null 2>&1 \
-                || warn "git lfs pull failed for $rel"
-        else
-            warn "git-lfs unavailable; cannot fetch the env helper binary"
-        fi
-    fi
-
-    if envsetup_needs_pull "$bin"; then
-        warn "Env helper binary unavailable ($rel); falling back to template copy"
+    # Fetch this host's prebuilt binary (LFS) for the interactive walkthrough.
+    local bin
+    if ! bin="$(ensure_envsetup_bin)"; then
+        warn "Falling back to template copy"
         copy_env_template "$example" "$envfile"
         return 0
     fi
 
-    chmod +x "$bin" 2>/dev/null || true
-
-    info "Launching env helper ($rel)"
+    info "Launching env helper"
     local rc=0
     DOTFILES="$DOTFILES_DIR" "$bin" "$example" "$envfile" || rc=$?
     if [[ "$rc" -eq 0 ]]; then
