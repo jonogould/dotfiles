@@ -14,6 +14,7 @@ from zero to a fully wired Zsh in a single paste.*
 ![Zsh](https://img.shields.io/badge/Zsh-1A2C34?style=for-the-badge&logo=gnubash&logoColor=4EAA25)
 ![Go](https://img.shields.io/badge/Go_1.25-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![Git LFS](https://img.shields.io/badge/Git%20LFS-F64935?style=for-the-badge&logo=git&logoColor=white)
+![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue?style=for-the-badge)
 
 </div>
 
@@ -214,6 +215,13 @@ gitignored and regenerated automatically during install. After editing any
 ```sh
 zsh ~/.dotfiles/zsh/compile.zsh
 ```
+
+---
+
+## 📜 License
+
+Released into the **public domain** under [The Unlicense](LICENSE) — copy,
+modify, use, and redistribute it however you like, no attribution required.
 
 ---
 
