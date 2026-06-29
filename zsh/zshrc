@@ -56,8 +56,10 @@ path=(
 [[ -f $DOTFILES/zsh/alias.zsh ]] && source $DOTFILES/zsh/alias.zsh
 
 # Load all custom functions (history.zsh is sourced separately after plugins)
+# Skip *.zwc artifacts: sourcing a compiled file by its .zwc path parses the
+# wordcode binary as text. The base .zsh names transparently use their .zwc.
 for func_file in $DOTFILES/zsh/functions/*; do
-    [[ -f "$func_file" && "${func_file:t}" != "history.zsh" ]] && source "$func_file"
+    [[ -f "$func_file" && "${func_file:e}" != "zwc" && "${func_file:t}" != "history.zsh" ]] && source "$func_file"
 done
 
 # Load custom theme (with file check)
