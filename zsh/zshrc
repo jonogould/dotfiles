@@ -7,6 +7,16 @@ setopt auto_cd                # cd by typing directory name
 setopt multios                # Multiple redirections
 setopt prompt_subst           # Allow command substitution in prompt
 
+# Terminal compat: if the current $TERM has no terminfo entry on this host
+# (common over SSH into servers that lack newer entries like xterm-ghostty,
+# xterm-kitty), the line editor can't emit cursor-movement caps and the prompt
+# corrupts (doubled characters, broken redraw, backspace weirdness). Fall back
+# to a universally-present entry. Best long-term fix is installing the real
+# entry on the host: `infocmp -x $TERM | ssh host 'tic -x -'`.
+if [[ -n "$TERM" && "$TERM" != "dumb" ]] && ! infocmp "$TERM" >/dev/null 2>&1; then
+    export TERM=xterm-256color
+fi
+
 # History configuration (optimized)
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
