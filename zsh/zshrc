@@ -143,3 +143,13 @@ unset cmd
 [[ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ]] && export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# iTerm2 shell integration (marks, jump-to-prompt, badges). Guarded to iTerm2
+# only so it's a no-op in Ghostty (which injects its own integration via
+# GHOSTTY_SHELL_FEATURES) or any other terminal.
+[[ "$TERM_PROGRAM" == "iTerm.app" && -f "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
+
+# BEGIN gocode
+export PATH="$HOME/.gocode/shims":$PATH
+# END gocode
+eval "$(rbenv init - zsh)"
