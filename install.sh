@@ -3,7 +3,7 @@
 # Dotfiles installer — cross-OS (macOS + Linux), idempotent, safe to re-run.
 #
 # One-liner:
-#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/master/install.sh)"
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/main/install.sh)"
 #
 # What it does:
 #   1. Self-bootstraps: clones (or pulls) the repo into ~/.dotfiles, then re-execs.
@@ -56,6 +56,9 @@ if [[ "$SCRIPT_DIR" != "$DOTFILES_DIR" ]]; then
     info "Bootstrapping dotfiles into $DOTFILES_DIR"
     if [[ -d "$DOTFILES_DIR/.git" ]]; then
         info "Repo already present; pulling latest"
+        git -C "$DOTFILES_DIR" fetch --prune origin
+        default_branch="$(git -C "$DOTFILES_DIR" rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@')"
+        git -C "$DOTFILES_DIR" checkout "$default_branch" 2>/dev/null || warn "checkout of $default_branch failed; continuing with existing checkout"
         git -C "$DOTFILES_DIR" pull --ff-only || warn "git pull failed; continuing with existing checkout"
     else
         if ! command -v git >/dev/null 2>&1; then

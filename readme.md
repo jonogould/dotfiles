@@ -26,7 +26,7 @@ from zero to a fully wired Zsh in a single paste.*
 > Fresh machine? This is the only command you need. It bootstraps **everything**.
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/master/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/main/install.sh)"
 ```
 
 That's it. ☕ The installer clones this repo to `~/.dotfiles` (over HTTPS — **no
@@ -131,7 +131,7 @@ and point the installer at it:
 
 ```sh
 DOTFILES_PROFILE=~/secure/dotfiles.profile.yml \
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/master/install.sh)"
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/main/install.sh)"
 ```
 
 When `DOTFILES_PROFILE` is set, the installer provisions **non-interactively**
