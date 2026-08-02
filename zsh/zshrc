@@ -152,4 +152,4 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 # BEGIN gocode
 export PATH="$HOME/.gocode/shims":$PATH
 # END gocode
-eval "$(rbenv init - zsh)"
+command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init - zsh)"

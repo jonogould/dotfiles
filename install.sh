@@ -54,19 +54,7 @@ SCRIPT_DIR="$(resolve_script_dir)"
 
 if [[ "$SCRIPT_DIR" != "$DOTFILES_DIR" ]]; then
     info "Bootstrapping dotfiles into $DOTFILES_DIR"
-    if [[ -d "$DOTFILES_DIR/.git" ]]; then
-        info "Repo already present; pulling latest"
-        git -C "$DOTFILES_DIR" fetch --prune origin
-        git -C "$DOTFILES_DIR" remote set-head origin -a 2>/dev/null || true
-        default_branch="$(git -C "$DOTFILES_DIR" symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || true)"
-        default_branch="${default_branch#origin/}"
-        if [[ -n "$default_branch" ]]; then
-            git -C "$DOTFILES_DIR" checkout "$default_branch" 2>/dev/null || warn "checkout of $default_branch failed; continuing with existing checkout"
-        else
-            warn "could not determine remote default branch; continuing with existing checkout"
-        fi
-        git -C "$DOTFILES_DIR" pull --ff-only || warn "git pull failed; continuing with existing checkout"
-    else
+    clone_fresh() {
         if ! command -v git >/dev/null 2>&1; then
             warn "git is required to clone the repo but was not found."
             warn "Install git first, then re-run this installer."
@@ -75,6 +63,28 @@ if [[ "$SCRIPT_DIR" != "$DOTFILES_DIR" ]]; then
         # Skip LFS smudge on clone so we pull pointers only (a few KB), not all
         # prebuilt binaries. setup_env later fetches just the host's binary.
         GIT_LFS_SKIP_SMUDGE=1 git clone "$REPO_HTTPS_URL" "$DOTFILES_DIR"
+    }
+
+    if [[ -d "$DOTFILES_DIR/.git" ]]; then
+        info "Repo already present; pulling latest"
+        git -C "$DOTFILES_DIR" fetch --prune origin
+        git -C "$DOTFILES_DIR" remote set-head origin -a 2>/dev/null || true
+        default_branch="$(git -C "$DOTFILES_DIR" symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || true)"
+        default_branch="${default_branch#origin/}"
+        synced=false
+        if [[ -n "$default_branch" ]] \
+            && git -C "$DOTFILES_DIR" checkout "$default_branch" 2>/dev/null \
+            && git -C "$DOTFILES_DIR" pull --ff-only 2>/dev/null; then
+            synced=true
+        fi
+        if [[ "$synced" != true ]]; then
+            warn "existing checkout at $DOTFILES_DIR is stale, dirty, or diverged; backing up and re-cloning"
+            mv "$DOTFILES_DIR" "$BACKUP_DIR"
+            clone_fresh
+            ok "Old checkout backed up to $BACKUP_DIR"
+        fi
+    else
+        clone_fresh
     fi
     ok "Repo ready at $DOTFILES_DIR"
     info "Re-executing installer from cloned repo"
