@@ -57,8 +57,14 @@ if [[ "$SCRIPT_DIR" != "$DOTFILES_DIR" ]]; then
     if [[ -d "$DOTFILES_DIR/.git" ]]; then
         info "Repo already present; pulling latest"
         git -C "$DOTFILES_DIR" fetch --prune origin
-        default_branch="$(git -C "$DOTFILES_DIR" rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@')"
-        git -C "$DOTFILES_DIR" checkout "$default_branch" 2>/dev/null || warn "checkout of $default_branch failed; continuing with existing checkout"
+        git -C "$DOTFILES_DIR" remote set-head origin -a 2>/dev/null || true
+        default_branch="$(git -C "$DOTFILES_DIR" symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || true)"
+        default_branch="${default_branch#origin/}"
+        if [[ -n "$default_branch" ]]; then
+            git -C "$DOTFILES_DIR" checkout "$default_branch" 2>/dev/null || warn "checkout of $default_branch failed; continuing with existing checkout"
+        else
+            warn "could not determine remote default branch; continuing with existing checkout"
+        fi
         git -C "$DOTFILES_DIR" pull --ff-only || warn "git pull failed; continuing with existing checkout"
     else
         if ! command -v git >/dev/null 2>&1; then
