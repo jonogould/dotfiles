@@ -9,6 +9,7 @@ brew "grc"
 brew "zsh"
 brew "antidote"
 brew "nvm"
+brew "rbenv"
 
 # Optional extras (uncomment to install):
 brew "uv"
