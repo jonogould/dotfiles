@@ -142,6 +142,10 @@ unset cmd
 # Guarded so it no-ops on machines without the Antigravity IDE installed.
 [[ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ]] && export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
+# git-lfs (installed via brew/apt/dnf/pacman, but guarded individually so
+# hooks calling `git-lfs` still resolve it even outside the brew shellenv path)
+[[ -n "$HOMEBREW_PREFIX" && -x "$HOMEBREW_PREFIX/bin/git-lfs" ]] && export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
 # iTerm2 shell integration (marks, jump-to-prompt, badges). Guarded to iTerm2
