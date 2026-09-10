@@ -9,10 +9,18 @@ alias c_dot="cursor ~/.dotfiles/"
 alias reload="source ~/.zshrc && echo 'zshrc reloaded'"
 
 # ls
-alias l="ls -lhG"
-alias ls="ls -FG"
-alias la='ls -lAG'
-alias ll="clear && ls -lahG"
+# BSD/macOS ls colorizes with -G; GNU coreutils & BusyBox (e.g. Home Assistant)
+# use --color=auto. Detect the supported flag once so these work everywhere.
+if command ls --color=auto -d . >/dev/null 2>&1; then
+    _ls_color='--color=auto'
+else
+    _ls_color='-G'
+fi
+alias l="ls -lh ${_ls_color}"
+alias ls="ls -F ${_ls_color}"
+alias la="ls -lA ${_ls_color}"
+alias ll="clear && ls -lah ${_ls_color}"
+unset _ls_color
 alias ..='cd ..'
 alias ...='cd ../..'
 alias md='mkdir -p'
