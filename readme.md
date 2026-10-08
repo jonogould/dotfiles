@@ -64,7 +64,7 @@ flowchart LR
    - 🍎 **macOS** — installs [Homebrew](https://brew.sh) if missing, then
      `brew bundle` from the [`Brewfile`](Brewfile).
    - 🐧 **Linux** — detects `apt-get` / `dnf` / `pacman` and installs
-     `git git-lfs zsh go jq grc curl`.
+     `git git-lfs zsh go jq curl`.
 3. **🔗 Symlinks** — links config files into `$HOME`. Any existing real file is
    moved to `~/.dotfiles-backup-<timestamp>/` first, then replaced with a
    symlink (`ln -sfn`).
@@ -89,7 +89,6 @@ flowchart LR
 | `zsh/zshrc`                   | `~/.zshrc`        |
 | `git/gitconfig`               | `~/.gitconfig`    |
 | `editorconfig/editorconfig`   | `~/.editorconfig` |
-| `ack/ackrc`                   | `~/.ackrc`        |
 
 ---
 

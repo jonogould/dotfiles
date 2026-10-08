@@ -127,26 +127,26 @@ install_macos_deps() {
 
 install_linux_deps() {
     # Maps logical deps to per-manager package names.
-    # Logical set: git, git-lfs, zsh, go, jq, grc, curl, rbenv
+    # Logical set: git, git-lfs, zsh, go, jq, curl, rbenv
     if command -v apt-get >/dev/null 2>&1; then
         info "Installing dependencies via apt-get"
         sudo apt-get update
-        sudo apt-get install -y git git-lfs zsh golang-go jq grc curl
+        sudo apt-get install -y git git-lfs zsh golang-go jq curl
         sudo apt-get install -y rbenv || warn "rbenv package not available; skipping (optional)"
         ok "apt-get dependencies installed"
     elif command -v dnf >/dev/null 2>&1; then
         info "Installing dependencies via dnf"
-        sudo dnf install -y git git-lfs zsh golang jq grc curl
+        sudo dnf install -y git git-lfs zsh golang jq curl
         sudo dnf install -y rbenv || warn "rbenv package not available; skipping (optional)"
         ok "dnf dependencies installed"
     elif command -v pacman >/dev/null 2>&1; then
         info "Installing dependencies via pacman"
-        sudo pacman -Sy --needed --noconfirm git git-lfs zsh go jq grc curl
+        sudo pacman -Sy --needed --noconfirm git git-lfs zsh go jq curl
         sudo pacman -S --needed --noconfirm rbenv || warn "rbenv package not available; skipping (optional)"
         ok "pacman dependencies installed"
     else
         warn "No supported package manager found (apt-get/dnf/pacman)."
-        warn "Install these manually: git git-lfs zsh go jq grc curl rbenv"
+        warn "Install these manually: git git-lfs zsh go jq curl rbenv"
     fi
 }
 
@@ -164,7 +164,6 @@ SYMLINKS=(
     "zsh/zshrc:$HOME/.zshrc"
     "git/gitconfig:$HOME/.gitconfig"
     "editorconfig/editorconfig:$HOME/.editorconfig"
-    "ack/ackrc:$HOME/.ackrc"
 )
 
 link_file() {

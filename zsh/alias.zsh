@@ -45,17 +45,7 @@ alias gust='git stash pop'
 alias python='python3'
 alias py='python3'
 
-# Job & Process Management
-alias s='screen'
-alias sr='screen -r'
-
 # Vim inspired key mappings
-alias :e='gvim'
 alias :q='exit'
 
-# Tree
-alias tr='tree -d --prune -L 3'
-
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
-
-alias dcu='docker compose up'

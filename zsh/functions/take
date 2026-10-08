@@ -6,5 +6,5 @@ function take() {
 function stake() {
   mkdir -p $1
   cd $1
-  subl
+  cursor .
 }
