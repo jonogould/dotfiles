@@ -99,8 +99,46 @@ DO_NOT_TRACK=1
 [[ -f $DOTFILES/zsh/local.zsh ]] && source $DOTFILES/zsh/local.zsh
 
 # Antidote - use static loading for performance (faster than dynamic)
-# The .zsh_plugins.zsh file is pre-generated and just sources plugins directly
-[[ -f ~/.zsh_plugins.zsh ]] && source ~/.zsh_plugins.zsh
+# The .zsh_plugins.zsh file is pre-generated and just sources plugins directly.
+# Self-heal when the bundle is missing/empty, or when the antidote cache was
+# cleared (e.g. macOS cache cleanup) and cloned plugin paths no longer exist.
+_antidote_ensure_plugins() {
+    [[ -f ~/.zsh_plugins.txt ]] || return
+    local line path antidote_zsh candidate needs_rebuild=0
+
+    if [[ ! -s ~/.zsh_plugins.zsh ]]; then
+        needs_rebuild=1
+    else
+        for line in ${(f)"$(<~/.zsh_plugins.zsh)"}; do
+            [[ "$line" == source\ * ]] && break
+            line=""
+        done
+        if [[ -z "$line" ]]; then
+            needs_rebuild=1
+        else
+            path="${line#source }"
+            path="${path//\"/}"
+            [[ -f "$path" ]] || needs_rebuild=1
+        fi
+    fi
+    (( needs_rebuild )) || return
+
+    for candidate in \
+        "$(brew --prefix antidote 2>/dev/null)/share/antidote/antidote.zsh" \
+        "$HOME/.antidote/antidote.zsh"; do
+        [[ -f "$candidate" ]] && antidote_zsh="$candidate" && break
+    done
+    [[ -z "$antidote_zsh" ]] && return
+
+    # Non-login shells may not have system paths yet; antidote needs git/awk/etc.
+    path=(/usr/local/bin /usr/bin /bin /usr/sbin /sbin ${HOMEBREW_PREFIX:+$HOMEBREW_PREFIX/bin} $path)
+    source "$antidote_zsh"
+    antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.zsh
+    zcompile ~/.zsh_plugins.zsh 2>/dev/null
+}
+_antidote_ensure_plugins
+unfunction _antidote_ensure_plugins
+[[ -s ~/.zsh_plugins.zsh ]] && source ~/.zsh_plugins.zsh
 
 # ↑/↓ filter history by what you've typed (e.g. "ssh " then ↑)
 [[ -f $DOTFILES/zsh/functions/history.zsh ]] && source $DOTFILES/zsh/functions/history.zsh
