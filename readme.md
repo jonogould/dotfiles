@@ -14,6 +14,7 @@ from zero to a fully wired Zsh in a single paste.*
 ![Zsh](https://img.shields.io/badge/Zsh-1A2C34?style=for-the-badge&logo=gnubash&logoColor=4EAA25)
 ![Go](https://img.shields.io/badge/Go_1.25-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![Git LFS](https://img.shields.io/badge/Git%20LFS-F64935?style=for-the-badge&logo=git&logoColor=white)
+![Release](https://img.shields.io/github/v/release/jonogould/dotfiles?style=for-the-badge)
 ![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue?style=for-the-badge)
 
 </div>
@@ -40,6 +41,7 @@ SSH keys required**), re-execs itself from there, and is **100% safe to re-run**
 | --- | --- |
 | 🖥️ **Cross-OS** | One installer, identical result on macOS & Linux |
 | 🔁 **Idempotent** | Re-run anytime — it heals drift and never clobbers your secrets |
+| 🔌 **Self-healing plugins** | Empty or stale antidote bundles rebuild on shell start |
 | 🧳 **Auto-backup** | Existing files are stashed in a timestamped folder before linking |
 | 🎨 **Gorgeous `.env` wizard** | A polished Go TUI walks you through your secrets |
 | 🧬 **Profile provisioning** | Rehydrate private details from one YAML file, zero prompts |
@@ -62,9 +64,10 @@ flowchart LR
    already exists), then re-runs from the cloned copy.
 2. **🧱 Dependencies**
    - 🍎 **macOS** — installs [Homebrew](https://brew.sh) if missing, then
-     `brew bundle` from the [`Brewfile`](Brewfile).
+     `brew bundle` from the [`Brewfile`](Brewfile) (`git`, `git-lfs`, `go`,
+     `jq`, `zsh`, `antidote`, `nvm`, `rbenv`, and optional `uv`).
    - 🐧 **Linux** — detects `apt-get` / `dnf` / `pacman` and installs
-     `git git-lfs zsh go jq curl`.
+     `git git-lfs zsh go jq curl`, plus `rbenv` when the distro packages it.
 3. **🔗 Symlinks** — links config files into `$HOME`. Any existing real file is
    moved to `~/.dotfiles-backup-<timestamp>/` first, then replaced with a
    symlink (`ln -sfn`).
@@ -72,7 +75,9 @@ flowchart LR
    - 🔌 [antidote](https://github.com/mattmc3/antidote) — from Homebrew on macOS
      (it's in the [`Brewfile`](Brewfile)); on Linux without Homebrew it falls
      back to a git clone into `~/.antidote`. Either way it regenerates
-     `~/.zsh_plugins.zsh` (from `~/.zsh_plugins.txt`).
+     `~/.zsh_plugins.zsh` (from `~/.zsh_plugins.txt`). At shell start,
+     [`zsh/zshrc`](zsh/zshrc) also rebuilds that bundle if it is missing,
+     empty, or points at deleted cache paths (e.g. after macOS cache cleanup).
    - 📦 [nvm](https://github.com/nvm-sh/nvm) — from Homebrew on macOS (the
      installer just ensures the `~/.nvm` data dir exists); on Linux without
      Homebrew it falls back to the upstream install script into `~/.nvm`.
@@ -115,7 +120,8 @@ cp ~/.dotfiles/.env.example ~/.dotfiles/.env
 $EDITOR ~/.dotfiles/.env
 ```
 
-🔑 Keys: `GOCODE_API_TOKEN` · `OPENAI_API_KEY`
+🔑 Keys (from [`.env.example`](.env.example)): `ANTHROPIC_BASE_URL` ·
+`GOCODE_API_TOKEN` · `OPENAI_API_KEY` (mirrors the token) · `TYPESAFE_API_KEY`
 
 ---
 
@@ -145,6 +151,7 @@ git:                       # -> git/identity.local
 env:                       # -> .env (overlaid onto .env.example, 0600)
   ANTHROPIC_BASE_URL: ""
   GOCODE_API_TOKEN: ""
+  TYPESAFE_API_KEY: ""
 zsh:                       # -> zsh/local.zsh
   GOPRIVATE: "github.com/your-org/*"
   extra: |
@@ -195,9 +202,17 @@ git commit
 
 ## 🔄 Re-running / updating
 
+Latest release: **[v2.0.0](https://github.com/jonogould/dotfiles/releases/tag/v2.0.0)**.
+
 The installer is **idempotent** — re-running pulls the latest repo, re-links
 anything that drifted (backing up first), and re-runs post-link setup **without
 clobbering your `.env`.** To update later:
+
+```sh
+cd ~/.dotfiles && git pull && ./install.sh
+```
+
+Or simply:
 
 ```sh
 bash ~/.dotfiles/install.sh
