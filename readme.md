@@ -27,7 +27,7 @@ from zero to a fully wired Zsh in a single paste.*
 > Fresh machine? This is the only command you need. It bootstraps **everything**.
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/HEAD/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/main/install.sh)"
 ```
 
 That's it. ☕ The installer clones this repo to `~/.dotfiles` (over HTTPS — **no
@@ -136,7 +136,7 @@ and point the installer at it:
 
 ```sh
 DOTFILES_PROFILE=~/secure/dotfiles.profile.yml \
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/HEAD/install.sh)"
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/jonogould/dotfiles/main/install.sh)"
 ```
 
 When `DOTFILES_PROFILE` is set, the installer provisions **non-interactively**
@@ -202,7 +202,7 @@ git commit
 
 ## 🔄 Re-running / updating
 
-Latest release: **[v2.0.0](https://github.com/jonogould/dotfiles/releases/tag/v2.0.0)**.
+Latest release: **[v2.1.0](https://github.com/jonogould/dotfiles/releases/tag/v2.1.0)**.
 
 The installer is **idempotent** — re-running pulls the latest repo, re-links
 anything that drifted (backing up first), and re-runs post-link setup **without
@@ -216,6 +216,38 @@ Or simply:
 
 ```sh
 bash ~/.dotfiles/install.sh
+```
+
+---
+
+## 📱 Build and run an iOS app
+
+On macOS, start a simulator, open a terminal in your iOS project directory,
+and build, install, and launch the app with one command:
+
+```sh
+iosrun
+```
+
+The function prefers a `*.xcworkspace`, falling back to `*.xcodeproj`.
+If several match, it selects the first alphabetically and prints its choice.
+The scheme defaults to the selected workspace/project name; override it with:
+
+```sh
+iosrun MyAppScheme
+```
+
+It uses Apple's `xcodebuild` and `xcrun simctl` from the selected Xcode installation,
+plus `jq` (included in the Brewfile). Xcode can stay closed. It selects the first
+booted simulator, builds in Debug, and reuses a separate build cache for each
+workspace/project. Project dependencies and package credentials must already
+be configured.
+
+New shells load the function automatically. To use it in an existing shell
+immediately after updating:
+
+```sh
+source ~/.dotfiles/zsh/functions/iosrun
 ```
 
 ---

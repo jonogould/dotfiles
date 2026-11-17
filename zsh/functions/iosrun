@@ -1,0 +1,55 @@
+# Build and run the current directory's iOS app on a booted simulator.
+# Prefer *.xcworkspace, then *.xcodeproj; choose the first alphabetically.
+# Usage: iosrun [scheme] (defaults to the selected workspace/project name).
+function iosrun() (
+  set -e
+  set -o pipefail
+
+  local -a workspaces projects build_args
+  local container container_flag scheme sim_id derived app bundle_id project_key
+  workspaces=( "$PWD"/*.xcworkspace(N) )
+  projects=( "$PWD"/*.xcodeproj(N) )
+  if (( ${#workspaces} )); then
+    container="${workspaces[1]}"
+    container_flag=-workspace
+  elif (( ${#projects} )); then
+    container="${projects[1]}"
+    container_flag=-project
+  else
+    echo "Run iosrun from a directory containing a .xcworkspace or .xcodeproj."
+    exit 1
+  fi
+  scheme="${1:-${container:t:r}}"
+  printf 'Using %s (scheme: %s)\n' "${container:t}" "$scheme"
+
+  sim_id=$(xcrun simctl list devices booted -j |
+    jq -r '[.devices[][] | select(.state == "Booted")][0].udid // empty')
+  if [[ -z "$sim_id" ]]; then
+    echo "Start a simulator first."
+    exit 1
+  fi
+
+  project_key=$(printf '%s' "$container" | cksum | awk '{print $1}')
+  derived="$HOME/Library/Developer/Xcode/DerivedData/SimulatorCLI-$project_key"
+  build_args=(
+    "$container_flag" "$container"
+    -scheme "$scheme"
+    -configuration Debug
+    -destination "platform=iOS Simulator,id=$sim_id"
+    -derivedDataPath "$derived"
+  )
+
+  xcodebuild "${build_args[@]}" -quiet build
+  app=$(xcodebuild "${build_args[@]}" -showBuildSettings -json |
+    jq -er '[.[].buildSettings |
+      select(.PRODUCT_TYPE == "com.apple.product-type.application") |
+      .TARGET_BUILD_DIR + "/" + .FULL_PRODUCT_NAME] |
+      if length == 1 then .[0]
+      else error("Expected exactly one application target in the scheme") end')
+  bundle_id=$(/usr/libexec/PlistBuddy \
+    -c 'Print :CFBundleIdentifier' "$app/Info.plist")
+
+  xcrun simctl install "$sim_id" "$app"
+  xcrun simctl terminate "$sim_id" "$bundle_id" 2>/dev/null || true
+  xcrun simctl launch "$sim_id" "$bundle_id"
+)
