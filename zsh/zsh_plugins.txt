@@ -1,0 +1,11 @@
+# .zsh_plugins.txt — antidote plugin manifest (symlinked to ~/.zsh_plugins.txt)
+
+# Live type-ahead completions (must load before other completion-related plugins)
+marlonrichert/zsh-autocomplete
+
+# Directory jumper
+rupa/z
+
+# Fish-like extras
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting

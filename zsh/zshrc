@@ -13,8 +13,12 @@ setopt prompt_subst           # Allow command substitution in prompt
 # corrupts (doubled characters, broken redraw, backspace weirdness). Fall back
 # to a universally-present entry. Best long-term fix is installing the real
 # entry on the host: `infocmp -x $TERM | ssh host 'tic -x -'`.
-if [[ -n "$TERM" && "$TERM" != "dumb" ]] && ! infocmp "$TERM" >/dev/null 2>&1; then
-    export TERM=xterm-256color
+# Also fall back when the entry exists but lacks kcbt — zsh-autocomplete aborts
+# its entire bindkey setup on a missing $terminfo[kcbt] (seen with Ghostty).
+if [[ -n "$TERM" && "$TERM" != "dumb" ]]; then
+    if ! infocmp "$TERM" >/dev/null 2>&1 || ! infocmp -1 "$TERM" 2>/dev/null | grep -q 'kcbt='; then
+        export TERM=xterm-256color
+    fi
 fi
 
 # History configuration (optimized)
@@ -133,19 +137,32 @@ _antidote_ensure_plugins() {
 }
 _antidote_ensure_plugins
 unfunction _antidote_ensure_plugins
+
+# zsh-autocomplete bindkeys menu-search/recent-paths before its precmd creates
+# them. fast-syntax-highlighting then warns "unhandled ZLE widget". Stub first
+# so FSH sees real user widgets; autocomplete's precmd replaces with zle -C.
+.zsh-autocomplete-stub() { :; }
+zle -N menu-search .zsh-autocomplete-stub
+zle -N recent-paths .zsh-autocomplete-stub
+zle -N insert-unambiguous-or-complete .zsh-autocomplete-stub
+
 [[ -s ~/.zsh_plugins.zsh ]] && source ~/.zsh_plugins.zsh
 
-# ↑/↓ filter history by what you've typed (e.g. "ssh " then ↑)
-[[ -f $DOTFILES/zsh/functions/history.zsh ]] && source $DOTFILES/zsh/functions/history.zsh
-
-# Completion menu - highlight selected item while navigating with arrow keys
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+# Completions: zsh-autocomplete (via antidote). list-colors only (visual).
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=1;30;48;5;73"
 
-# Tab: accept autosuggestion if one is showing, otherwise do normal completion
-zle -N _tab_or_complete
-bindkey '^I' _tab_or_complete
+# ↑ = prefix history ("claude " → prior args). Autocomplete's up-line-or-search
+# only matches the first word and feels broken for this. ↓ stays enter-completion-list.
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[OA' history-beginning-search-backward
+
+# Safety net: if autocomplete's bindkey setup aborted (missing terminfo caps),
+# re-apply ↓ / Tab so the completion list is still reachable.
+if (( ${+widgets[down-line-or-select]} )) && [[ "$(bindkey '^[[B')" != *down-line-or-select* ]]; then
+    bindkey '^[[B' down-line-or-select
+    bindkey '^[OB' down-line-or-select
+    bindkey '^I'   complete-word
+fi
 
 
 # NVM - lazy loaded for faster shell startup
@@ -170,7 +187,6 @@ for cmd in nvm node npm npx corepack; do
 done
 unset cmd
 
-
 # Added by Antigravity IDE
 # Guarded so it no-ops on machines without the Antigravity IDE installed.
 [[ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ]] && export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
@@ -190,3 +206,14 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 export PATH="$HOME/.gocode/shims":$PATH
 # END gocode
 command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init - zsh)"
+
+# fzf — Ctrl-R fuzzy history, Ctrl-T files, Alt-C cd (Brewfile / apt/dnf/pacman).
+# Reclaim Tab for zsh-autocomplete after fzf's completion widget binds it.
+if command -v fzf >/dev/null 2>&1; then
+    eval "$(fzf --zsh)"
+    (( ${+widgets[complete-word]} )) && bindkey '^I' complete-word
+fi
+
+# Optional local tool shims (no-op when dirs are absent)
+[[ -d "$HOME/.local/bin" ]] && path=("$HOME/.local/bin" $path)
+[[ -d "$HOME/.codeaf/bin" ]] && path=("$HOME/.codeaf/bin" $path)

@@ -42,6 +42,8 @@ SSH keys required**), re-execs itself from there, and is **100% safe to re-run**
 | 🖥️ **Cross-OS** | One installer, identical result on macOS & Linux |
 | 🔁 **Idempotent** | Re-run anytime — it heals drift and never clobbers your secrets |
 | 🔌 **Self-healing plugins** | Empty or stale antidote bundles rebuild on shell start |
+| 🔍 **fzf** | Ctrl-R fuzzy history, Ctrl-T files, Alt-C cd — installed with deps |
+| ✨ **zsh-autocomplete** | Type-ahead completions; ↑ walks prefix history |
 | 🧳 **Auto-backup** | Existing files are stashed in a timestamped folder before linking |
 | 🎨 **Gorgeous `.env` wizard** | A polished Go TUI walks you through your secrets |
 | 🧬 **Profile provisioning** | Rehydrate private details from one YAML file, zero prompts |
@@ -65,9 +67,9 @@ flowchart LR
 2. **🧱 Dependencies**
    - 🍎 **macOS** — installs [Homebrew](https://brew.sh) if missing, then
      `brew bundle` from the [`Brewfile`](Brewfile) (`git`, `git-lfs`, `go`,
-     `jq`, `zsh`, `antidote`, `nvm`, `rbenv`, and optional `uv`).
+     `jq`, `zsh`, `antidote`, `fzf`, `nvm`, `rbenv`, and optional `uv`).
    - 🐧 **Linux** — detects `apt-get` / `dnf` / `pacman` and installs
-     `git git-lfs zsh go jq curl`, plus `rbenv` when the distro packages it.
+     `git git-lfs zsh go jq curl fzf`, plus `rbenv` when the distro packages it.
 3. **🔗 Symlinks** — links config files into `$HOME`. Any existing real file is
    moved to `~/.dotfiles-backup-<timestamp>/` first, then replaced with a
    symlink (`ln -sfn`).
@@ -75,7 +77,8 @@ flowchart LR
    - 🔌 [antidote](https://github.com/mattmc3/antidote) — from Homebrew on macOS
      (it's in the [`Brewfile`](Brewfile)); on Linux without Homebrew it falls
      back to a git clone into `~/.antidote`. Either way it regenerates
-     `~/.zsh_plugins.zsh` (from `~/.zsh_plugins.txt`). At shell start,
+     `~/.zsh_plugins.zsh` from the tracked [`zsh/zsh_plugins.txt`](zsh/zsh_plugins.txt)
+     (symlinked to `~/.zsh_plugins.txt`). At shell start,
      [`zsh/zshrc`](zsh/zshrc) also rebuilds that bundle if it is missing,
      empty, or points at deleted cache paths (e.g. after macOS cache cleanup).
    - 📦 [nvm](https://github.com/nvm-sh/nvm) — from Homebrew on macOS (the
@@ -89,11 +92,12 @@ flowchart LR
 
 ## 🗺️ Symlink map
 
-| 📄 Source (in repo)           | 🎯 Target         |
-| ----------------------------- | ----------------- |
-| `zsh/zshrc`                   | `~/.zshrc`        |
-| `git/gitconfig`               | `~/.gitconfig`    |
-| `editorconfig/editorconfig`   | `~/.editorconfig` |
+| 📄 Source (in repo)           | 🎯 Target              |
+| ----------------------------- | ---------------------- |
+| `zsh/zshrc`                   | `~/.zshrc`             |
+| `zsh/zsh_plugins.txt`         | `~/.zsh_plugins.txt`   |
+| `git/gitconfig`               | `~/.gitconfig`         |
+| `editorconfig/editorconfig`   | `~/.editorconfig`      |
 
 ---
 
@@ -202,7 +206,7 @@ git commit
 
 ## 🔄 Re-running / updating
 
-Latest release: **[v2.1.0](https://github.com/jonogould/dotfiles/releases/tag/v2.1.0)**.
+Latest release: **[v2.2.0](https://github.com/jonogould/dotfiles/releases/tag/v2.2.0)**.
 
 The installer is **idempotent** — re-running pulls the latest repo, re-links
 anything that drifted (backing up first), and re-runs post-link setup **without

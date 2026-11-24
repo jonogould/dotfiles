@@ -17,3 +17,5 @@ alias aider='ANTHROPIC_BASE_URL=$ANTHROPIC_BASE_URL ANTHROPIC_API_KEY=$GOCODE_AP
 
 # Codex
 alias codex='OPENAI_BASE_URL=$ANTHROPIC_BASE_URL OPENAI_API_KEY=$GOCODE_API_TOKEN codex -m gpt-5-codex'
+
+alias claude-personal='env -u ANTHROPIC_API_KEY -u ANTHROPIC_AUTH_TOKEN CLAUDE_CONFIG_DIR="$HOME/.claude-personal" claude --dangerously-skip-permissions'

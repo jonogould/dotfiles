@@ -131,17 +131,17 @@ install_linux_deps() {
     if command -v apt-get >/dev/null 2>&1; then
         info "Installing dependencies via apt-get"
         sudo apt-get update
-        sudo apt-get install -y git git-lfs zsh golang-go jq curl
+        sudo apt-get install -y git git-lfs zsh golang-go jq curl fzf
         sudo apt-get install -y rbenv || warn "rbenv package not available; skipping (optional)"
         ok "apt-get dependencies installed"
     elif command -v dnf >/dev/null 2>&1; then
         info "Installing dependencies via dnf"
-        sudo dnf install -y git git-lfs zsh golang jq curl
+        sudo dnf install -y git git-lfs zsh golang jq curl fzf
         sudo dnf install -y rbenv || warn "rbenv package not available; skipping (optional)"
         ok "dnf dependencies installed"
     elif command -v pacman >/dev/null 2>&1; then
         info "Installing dependencies via pacman"
-        sudo pacman -Sy --needed --noconfirm git git-lfs zsh go jq curl
+        sudo pacman -Sy --needed --noconfirm git git-lfs zsh go jq curl fzf
         sudo pacman -S --needed --noconfirm rbenv || warn "rbenv package not available; skipping (optional)"
         ok "pacman dependencies installed"
     else
@@ -160,8 +160,10 @@ esac
 # 3. Symlink map (with backup)
 # ---------------------------------------------------------------------------
 # Format: "<source relative to DOTFILES_DIR>:<absolute target>"
+# Called by this script's link loop below. User: wire fzf + new-PC one-liner.
 SYMLINKS=(
     "zsh/zshrc:$HOME/.zshrc"
+    "zsh/zsh_plugins.txt:$HOME/.zsh_plugins.txt"
     "git/gitconfig:$HOME/.gitconfig"
     "editorconfig/editorconfig:$HOME/.editorconfig"
 )
@@ -236,12 +238,8 @@ setup_antidote() {
     fi
 
     if [[ ! -f "$HOME/.zsh_plugins.txt" ]]; then
-        info "Creating default ~/.zsh_plugins.txt"
-        cat > "$HOME/.zsh_plugins.txt" <<'PLUGINS'
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-syntax-highlighting
-PLUGINS
-        ok "Wrote ~/.zsh_plugins.txt"
+        warn "~/.zsh_plugins.txt missing (expected symlink from zsh/zsh_plugins.txt); skipping bundle"
+        return 0
     fi
 
     if [[ -z "$antidote_zsh" ]]; then

@@ -7,6 +7,7 @@ brew "go"
 brew "jq"
 brew "zsh"
 brew "antidote"
+brew "fzf"
 brew "nvm"
 brew "rbenv"
 
