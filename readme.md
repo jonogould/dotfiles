@@ -84,6 +84,8 @@ flowchart LR
    - 📦 [nvm](https://github.com/nvm-sh/nvm) — from Homebrew on macOS (the
      installer just ensures the `~/.nvm` data dir exists); on Linux without
      Homebrew it falls back to the upstream install script into `~/.nvm`.
+     Zsh lazy-loads only `nvm`; `node`/`npm` stay on Homebrew’s binaries
+     until you `nvm use`.
    - 🔐 **`.env` wizard** — see [Secrets](#-secrets--env) below.
    - ⚡ Recompiles zsh files via [`zsh/compile.zsh`](zsh/compile.zsh).
    - 🐚 Sets Zsh as the default shell (only if it's listed in `/etc/shells`).
@@ -206,7 +208,7 @@ git commit
 
 ## 🔄 Re-running / updating
 
-Latest release: **[v2.2.0](https://github.com/jonogould/dotfiles/releases/tag/v2.2.0)**.
+Latest release: **[v2.3.0](https://github.com/jonogould/dotfiles/releases/tag/v2.3.0)** — fix nvm lazy-load so `node`/`npm` no longer recurse.
 
 The installer is **idempotent** — re-running pulls the latest repo, re-links
 anything that drifted (backing up first), and re-runs post-link setup **without

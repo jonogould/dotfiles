@@ -165,27 +165,33 @@ if (( ${+widgets[down-line-or-select]} )) && [[ "$(bindkey '^[[B')" != *down-lin
 fi
 
 
-# NVM - lazy loaded for faster shell startup
+# NVM - lazy-load only `nvm` (not node/npm/npx).
+# Node itself is Homebrew's /opt/homebrew/bin/{node,npm}. Stubbing those
+# caused "maximum nested function level reached" when the wrapper re-entered
+# itself before a real binary was on PATH. `nvm use` still prepends version
+# bins when you need a non-system Node.
 # Homebrew installs nvm.sh under its prefix (NOT in ~/.nvm); git-clone/Linux
 # installs put it in $NVM_DIR. Keep NVM_DIR set either way — Homebrew's nvm
 # still uses it as the data dir. Prefer the brew copy, fall back to $NVM_DIR.
 export NVM_DIR="$HOME/.nvm"
-_nvm_lazy_load() {
-    unset -f nvm node npm npx corepack 2>/dev/null
+nvm() {
+    unset -f nvm
     local _nvm_prefix
     _nvm_prefix="$(brew --prefix nvm 2>/dev/null)"
-    if [ -n "$_nvm_prefix" ] && [ -s "$_nvm_prefix/nvm.sh" ]; then
-        \. "$_nvm_prefix/nvm.sh"
-        [ -s "$_nvm_prefix/etc/bash_completion.d/nvm" ] && \. "$_nvm_prefix/etc/bash_completion.d/nvm"
+    if [[ -n "$_nvm_prefix" && -s "$_nvm_prefix/nvm.sh" ]]; then
+        # shellcheck disable=SC1091
+        . "$_nvm_prefix/nvm.sh"
+        [[ -s "$_nvm_prefix/etc/bash_completion.d/nvm" ]] && . "$_nvm_prefix/etc/bash_completion.d/nvm"
+    elif [[ -s "$NVM_DIR/nvm.sh" ]]; then
+        # shellcheck disable=SC1091
+        . "$NVM_DIR/nvm.sh"
+        [[ -s "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
     else
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+        print -u2 "nvm: nvm.sh not found (brew nvm or \$NVM_DIR)"
+        return 127
     fi
+    nvm "$@"
 }
-for cmd in nvm node npm npx corepack; do
-    eval "${cmd}() { _nvm_lazy_load; ${cmd} \"\$@\" }"
-done
-unset cmd
 
 # Added by Antigravity IDE
 # Guarded so it no-ops on machines without the Antigravity IDE installed.
